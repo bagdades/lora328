@@ -716,6 +716,7 @@ aes_verifyMic0	src/lmic.c	/^static int aes_verifyMic0 (xref2u1_t pdu, int len) {
 aesroundkeys	src/aes.c	/^static void aesroundkeys () {$/;"	f	file:
 airtime	src/lmic.c	/^        ostime_t airtime = calcAirTime(LMIC.rps, LMIC.dataLen);$/;"	l
 airtime	src/lmic.c	/^    ostime_t airtime = calcAirTime(LMIC.rps, LMIC.dataLen);$/;"	l
+appskey	src/main.c	/^	uint8_t appskey[sizeof(APPSKEY)];$/;"	l
 args	src/printf-stdarg.c	/^        va_list args;$/;"	l
 artKey	inc/lmic.h	/^    u1_t        artKey[16];   \/\/ application router session key$/;"	m	struct:lmic_t	access:public
 assertDR	inc/lorabase.h	/^inline dr_t  assertDR (dr_t dr) { return _DR2RPS_CRC[dr+1]==ILLEGAL_RPS ? DR_DFLTMIN : dr; }   \/\/ force into a valid DR$/;"	f	signature:(dr_t dr)
@@ -1042,6 +1043,7 @@ noRXIQinversion	inc/lmic.h	/^    u1_t        noRXIQinversion;$/;"	m	struct:lmic_
 now	src/lmic.c	/^    ostime_t now    = os_getTime();$/;"	l
 np	src/printf-stdarg.c	/^	char *np = 0;$/;"	l
 nwkKey	inc/lmic.h	/^    u1_t        nwkKey[16];   \/\/ network session key$/;"	m	struct:lmic_t	access:public
+nwkskey	src/main.c	/^	uint8_t nwkskey[sizeof(NWKSKEY)];$/;"	l
 off	src/lmic.c	/^    ostime_t off = os_rlsbf2(LMIC.frame) & (0x0FFF >> (7 - intvExp)); \/\/ random offset (slot units)$/;"	l
 oidx	src/lmic.c	/^    int oidx = 0;$/;"	l
 olen	src/lmic.c	/^    int  olen  = fct & FCT_OPTLEN;$/;"	l
@@ -1167,6 +1169,8 @@ rejoinCnt	inc/lmic.h	/^    u1_t        rejoinCnt;    \/\/ adjustment for rejoin 
 remainder	src/lmic.c	/^    u2_t remainder = 0;$/;"	l
 replayConf	src/lmic.c	/^    int replayConf = 0;$/;"	l
 reportEvent	src/lmic.c	/^static void reportEvent (ev_t ev) {$/;"	f	file:	signature:(ev_t ev)
+reportfunc	src/main.c	/^static void reportfunc (osjob_t* j) {$/;"	f	file:	signature:(osjob_t* j)
+reportjob	src/main.c	/^static osjob_t reportjob;$/;"	v	file:
 ret	src/hal.c	/^	u1_t ret;$/;"	l
 rndDelay	src/lmic.c	/^static ostime_t rndDelay (u1_t secSpan) {$/;"	f	file:	signature:(u1_t secSpan)
 rps	inc/lmic.h	/^    rps_t       rps;$/;"	m	struct:lmic_t	access:public
@@ -1326,6 +1330,7 @@ usart_putstr	src/hal.c	/^void usart_putstr(char* str)$/;"	f	signature:(char* str
 usart_tx_buffer	src/hal.c	/^static uint8_t usart_tx_buffer[USART_RX_BUFFER_SIZE];$/;"	v	file:
 v	src/radio.c	/^    u1_t v = randbuf[i++];$/;"	l
 v	src/radio.c	/^    u1_t v = readReg(RegVersion);$/;"	l
+val	src/main.c	/^	    u2_t val = readsensor();$/;"	l
 val	src/radio.c	/^    u1_t val = hal_spi(0x00);$/;"	l
 validDR	inc/lorabase.h	/^inline bit_t validDR  (dr_t dr) { return _DR2RPS_CRC[dr+1]!=ILLEGAL_RPS; } \/\/ in range$/;"	f	signature:(dr_t dr)
 validDR	src/lmic.c	/^extern inline dr_t  validDR  (dr_t dr);$/;"	p	file:	signature:(dr_t dr)

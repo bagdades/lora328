@@ -52,9 +52,51 @@ u2_t readsensor(){
 	return value;
 }
 
+static osjob_t reportjob;
+
+// report sensor value every minute
+static void reportfunc (osjob_t* j) {
+	  // read sensor
+	    u2_t val = readsensor();
+	    // prepare and schedule data for transmission
+	    LMIC.frame[0] = val << 8;
+	    LMIC.frame[1] = val;
+	    LMIC_setTxData2(1, LMIC.frame, 2, 0); // (port 1, 2 bytes, unconfirmed)
+		/* usart_putstr("Report.\r\n"); */
+	    os_setTimedCallback(j, os_getTime()+sec2osticks(5), reportfunc);
+}
+
 static void initfunc (osjob_t* j) {
 	LMIC_reset();
+	// start joining
 	LMIC_startJoining();
+	// init done - onEvent() callback will be invoked...
+
+	//   ABP
+	uint8_t appskey[sizeof(APPSKEY)];
+	uint8_t nwkskey[sizeof(NWKSKEY)];
+	memcpy(appskey, APPSKEY, sizeof(APPSKEY));
+	memcpy(nwkskey, NWKSKEY, sizeof(NWKSKEY));
+	LMIC_setSession (0x1, DEVADDR, nwkskey, appskey);
+
+	LMIC_setupChannel(0, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(1, 868300000, DR_RANGE_MAP(DR_SF12, DR_SF7B), BAND_CENTI);      // g-band
+	LMIC_setupChannel(2, 868500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(3, 867100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(4, 867300000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(5, 867500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(6, 867700000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(7, 867900000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(8, 868800000, DR_RANGE_MAP(DR_FSK,  DR_FSK),  BAND_MILLI);      // g2-band
+
+	// Disable link check validation
+	LMIC_setLinkCheckMode(0);
+	// TTN uses SF9 for its RX2 window.
+	LMIC.dn2Dr = DR_SF9;
+	// Set data rate and transmit power for uplink (note: txpow seems to be ignored by the library)
+	LMIC_setDrTxpow(DR_SF7,14);
+
+	os_setTimedCallback(j, os_getTime(), reportfunc);
 }
 
 osjob_t tikjob;
@@ -69,22 +111,99 @@ static void tikfunc(osjob_t* j)
 	/* _delay_ms(1000); */
 	/* os_setCallback(&tikjob, tikfunc); */
 	/* printf("Ticks: %lu\r\n", hal_ticks()); */
-	os_setTimedCallback(&tikjob, os_getTime() + ms2osticks(500), tikfunc);
+	os_setTimedCallback(&tikjob, os_getTime() + sec2osticks(1), tikfunc);
+}
+
+void debug_event (int ev) {
+    static char* evnames[] = {
+        [EV_SCAN_TIMEOUT]   = "SCAN_TIMEOUT",
+        [EV_BEACON_FOUND]   = "BEACON_FOUND",
+        [EV_BEACON_MISSED]  = "BEACON_MISSED",
+        [EV_BEACON_TRACKED] = "BEACON_TRACKED",
+        [EV_JOINING]        = "JOINING",
+        [EV_JOINED]         = "JOINED",
+        [EV_RFU1]           = "RFU1",
+        [EV_JOIN_FAILED]    = "JOIN_FAILED",
+        [EV_REJOIN_FAILED]  = "REJOIN_FAILED",
+        [EV_TXCOMPLETE]     = "TXCOMPLETE",
+        [EV_LOST_TSYNC]     = "LOST_TSYNC",
+        [EV_RESET]          = "RESET",
+        [EV_RXCOMPLETE]     = "RXCOMPLETE",
+        [EV_LINK_DEAD]      = "LINK_DEAD",
+        [EV_LINK_ALIVE]     = "LINK_ALIVE",
+        [EV_SCAN_FOUND]     = "SCAN_FOUND",
+        [EV_TXSTART]        = "EV_TXSTART",
+    };
+    usart_putstr((ev < sizeof(evnames)/sizeof(evnames[0])) ? evnames[ev] : "EV_UNKNOWN" );
+    usart_putchar('\r');
+    usart_putchar('\n');
 }
 
 void onEvent(ev_t ev)
 {
-	switch (ev) 
-	{
+	debug_event(ev);
+	switch(ev) {
+
+		// network joined, session established
 		case EV_JOINING:
-			os_setCallback(&tikjob, tikfunc);
+			/* usart_putstr("try joining\r\n"); */
 			break;
 		case EV_JOINED:
-			os_clearCallback(&tikjob);	
-			PORTC |= (1 << 1);
+			/* debug_led(1); */
+			// kick-off periodic sensor job
+			reportfunc(&reportjob);
+			break;
+		case EV_JOIN_FAILED:
+			/* usart_putstr("join failed\r\n"); */
+			break;
+		case EV_SCAN_TIMEOUT:
+			/* usart_putstr("EV_SCAN_TIMEOUT\r\n"); */
+			break;
+		case EV_BEACON_FOUND:
+			/* usart_putstr("EV_BEACON_FOUND\r\n"); */
+			break;
+		case EV_BEACON_MISSED:
+			/* usart_putstr("EV_BEACON_MISSED\r\n"); */
+			break;
+		case EV_BEACON_TRACKED:
+			/* usart_putstr("EV_BEACON_TRACKED\r\n"); */
+			break;
+		case EV_RFU1:
+			/* usart_putstr("EV_RFU1\r\n"); */
+			break;
+		case EV_REJOIN_FAILED:
+			/* usart_putstr("EV_REJOIN_FAILED\r\n"); */
+			break;
+		case EV_TXCOMPLETE:
+			/* usart_putstr("EV_TXCOMPLETE (includes waiting for RX windows)\r\n"); */
+			if (LMIC.txrxFlags & TXRX_ACK)
+				/* usart_putstr("Received ack\r\n"); */
+			if (LMIC.dataLen) {
+				/* usart_putstr("Received "); */
+				/* printf("%d", LMIC.dataLen); */
+				/* usart_putstr(" bytes of payload\r\n"); */
+			}
+			break;
+		case EV_LOST_TSYNC:
+			/* usart_putstr("EV_LOST_TSYNC\r\n"); */
+			break;
+		case EV_RESET:
+			/* usart_putstr("EV_RESET\r\n"); */
+			break;
+		case EV_RXCOMPLETE:
+			// data received in ping slot
+			/* usart_putstr("EV_RXCOMPLETE\r\n"); */
+			break;
+		case EV_LINK_DEAD:
+			/* usart_putstr("EV_LINK_DEAD\r\n"); */
+			break;
+		case EV_LINK_ALIVE:
+			/* usart_putstr("EV_LINK_ALIVE\r\n"); */
+			break;
+		default:
+			/* usart_putstr("Unknown event\r\n"); */
 			break;
 	}
-
 }
 
 

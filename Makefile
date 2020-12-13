@@ -85,6 +85,7 @@ C_DEFS += CFG_sx1276_radio
 # C_DEFS += CFG_noassert
 C_DEFS += __AVR__
 C_DEFS += USE_ORIGINAL_AES
+# C_DEFS += CFG_TxContinuousMode
 # C_DEFS += DISABLE_BEACONS
 
 # AS includes

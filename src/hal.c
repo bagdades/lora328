@@ -94,6 +94,11 @@ void hal_init (void)
 	//Int0
 	EICRA |= (1 << ISC01) | ( 1 << ISC00);// Int0 rising edge
 	EIMSK |= (1 << INT0); //Enable interrupt int0
+	//Int PCI
+	DDRD &= ~(1 << PORTD5);
+	PORTD &= ~(1 << PORTD5);
+	PCICR |= (1 << PCIE2);
+	PCMSK0 |= (1 << PCINT2);
 	set_sleep_mode(SLEEP_MODE_IDLE);
 	sei();
 }
@@ -251,6 +256,13 @@ extern void radio_irq_handler(u1_t dio);
 
 ISR(INT0_vect)
 {
-	usart_putstr("Int0\r\n");
-	/* radio_irq_handler(0); */
+	/* usart_putstr("Int0\r\n"); */
+	radio_irq_handler(0);
+}
+
+ISR(PCINT2_vect)
+{
+	printf("Int1\r\n");
+	if(PIND & (1 << PORTD5))
+		radio_irq_handler(1);
 }
