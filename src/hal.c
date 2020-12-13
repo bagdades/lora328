@@ -98,7 +98,7 @@ void hal_init (void)
 	DDRD &= ~(1 << PORTD5);
 	PORTD &= ~(1 << PORTD5);
 	PCICR |= (1 << PCIE2);
-	PCMSK0 |= (1 << PCINT2);
+	PCMSK2 |= (1 << PCINT21);
 	set_sleep_mode(SLEEP_MODE_IDLE);
 	sei();
 }
@@ -262,7 +262,6 @@ ISR(INT0_vect)
 
 ISR(PCINT2_vect)
 {
-	usart_putstr("Int1\r\n");
 	if(PIND & (1 << PORTD5))
 		radio_irq_handler(1);
 }
