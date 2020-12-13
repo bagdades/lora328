@@ -262,7 +262,7 @@ ISR(INT0_vect)
 
 ISR(PCINT2_vect)
 {
-	printf("Int1\r\n");
+	usart_putstr("Int1\r\n");
 	if(PIND & (1 << PORTD5))
 		radio_irq_handler(1);
 }
