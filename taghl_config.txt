@@ -1,0 +1,2 @@
+IncludeLocals:True
+UserLibraries:/usr/lib/avr/include/types_c.taghl
