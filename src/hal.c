@@ -45,6 +45,11 @@ void usart_init(void)
 	UCSR0B |= (1 << RXEN0);
 	//Enable TX interrupt
 	UCSR0B |= (1 << TXCIE0);
+
+#ifdef  GPS_TRECKER
+	//Enable RX complete interrupt
+	UCSR0B |= (1 << RXCIE0);
+#endif     /* -----  not GPS_TRECKER  ----- */
 	//Set frame format to 8 data bits, no parity, 1 stop bit
 	UCSR0C |= (1 << UCSZ01) | (1 << UCSZ00);
 	/* stdout = &mystdout; */

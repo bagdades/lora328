@@ -33,7 +33,7 @@ BAND_AUX	inc/lmic.h	/^enum { BAND_MILLI=0, BAND_CENTI=1, BAND_DECI=2, BAND_AUX=3
 BAND_CENTI	inc/lmic.h	/^enum { BAND_MILLI=0, BAND_CENTI=1, BAND_DECI=2, BAND_AUX=3 };$/;"	e	enum:__anon26
 BAND_DECI	inc/lmic.h	/^enum { BAND_MILLI=0, BAND_CENTI=1, BAND_DECI=2, BAND_AUX=3 };$/;"	e	enum:__anon26
 BAND_MILLI	inc/lmic.h	/^enum { BAND_MILLI=0, BAND_CENTI=1, BAND_DECI=2, BAND_AUX=3 };$/;"	e	enum:__anon26
-BAUD_PRESCALLE	inc/hal.h	46;"	d
+BAUD_PRESCALLE	inc/hal.h	47;"	d
 BCN_FULL	inc/lmic.h	/^       BCN_FULL    = 0x02,   \/\/!< Full beacon decoded$/;"	e	enum:__anon21
 BCN_GUARD_ms	inc/lorabase.h	/^enum { BCN_GUARD_ms      = 3000 };   \/\/ end of beacon period to prevent interference with beacon$/;"	e	enum:__anon45
 BCN_GUARD_osticks	src/lmic.c	48;"	d	file:
@@ -76,12 +76,14 @@ CONST_TABLE	src/aes.c	/^static CONST_TABLE(u4_t, AES_E3)[256] = {$/;"	p	file:
 CONST_TABLE	src/aes.c	/^static CONST_TABLE(u4_t, AES_E4)[256] = {$/;"	p	file:
 CONST_TABLE	src/aes.c	/^static CONST_TABLE(u4_t, AES_RCON)[10] = {$/;"	p	file:
 CP	Makefile	/^CP = avr-objcopy$/;"	m
+CRC8INIT	src/crc8.c	5;"	d	file:
+CRC8POLY	src/crc8.c	6;"	d	file:
+CRC8_H_	inc/crc8.h	2;"	d
 CR_4_5	inc/lorabase.h	/^enum _cr_t { CR_4_5=0, CR_4_6, CR_4_7, CR_4_8 };$/;"	e	enum:_cr_t
 CR_4_6	inc/lorabase.h	/^enum _cr_t { CR_4_5=0, CR_4_6, CR_4_7, CR_4_8 };$/;"	e	enum:_cr_t
 CR_4_7	inc/lorabase.h	/^enum _cr_t { CR_4_5=0, CR_4_6, CR_4_7, CR_4_8 };$/;"	e	enum:_cr_t
 CR_4_8	inc/lorabase.h	/^enum _cr_t { CR_4_5=0, CR_4_6, CR_4_7, CR_4_8 };$/;"	e	enum:_cr_t
 C_INCLUDES	Makefile	/^C_INCLUDES = inc$/;"	m
-C_SOURCES	Makefile	/^C_SOURCES = src\/main.c \\$/;"	m
 DEBUG	Makefile	/^DEBUG = 1$/;"	m
 DECLARE_LMIC	inc/oslmic.h	94;"	d
 DECL_ON_LMIC_EVENT	inc/oslmic.h	82;"	d
@@ -143,6 +145,66 @@ DR_SF8CR	inc/lorabase.h	/^                   DR_SF12CR=8, DR_SF11CR, DR_SF10CR, 
 DR_SF9	inc/lorabase.h	/^enum _dr_eu868_t { DR_SF12=0, DR_SF11, DR_SF10, DR_SF9, DR_SF8, DR_SF7, DR_SF7B, DR_FSK, DR_NONE };$/;"	e	enum:_dr_eu868_t
 DR_SF9	inc/lorabase.h	/^enum _dr_us915_t { DR_SF10=0, DR_SF9, DR_SF8, DR_SF7, DR_SF8C, DR_NONE,$/;"	e	enum:_dr_us915_t
 DR_SF9CR	inc/lorabase.h	/^                   DR_SF12CR=8, DR_SF11CR, DR_SF10CR, DR_SF9CR, DR_SF8CR, DR_SF7CR };$/;"	e	enum:_dr_us915_t
+DS18B20_10_BIT	inc/ds18x20.h	35;"	d
+DS18B20_10_BIT_UNDF	inc/ds18x20.h	41;"	d
+DS18B20_11_BIT	inc/ds18x20.h	36;"	d
+DS18B20_11_BIT_UNDF	inc/ds18x20.h	42;"	d
+DS18B20_12_BIT	inc/ds18x20.h	37;"	d
+DS18B20_12_BIT_UNDF	inc/ds18x20.h	43;"	d
+DS18B20_9_BIT	inc/ds18x20.h	34;"	d
+DS18B20_9_BIT_UNDF	inc/ds18x20.h	40;"	d
+DS18B20_CONF_REG	inc/ds18x20.h	33;"	d
+DS18B20_ID	inc/ds18x20.h	24;"	d
+DS18B20_TCONV_10BIT	inc/ds18x20.h	48;"	d
+DS18B20_TCONV_11BIT	inc/ds18x20.h	47;"	d
+DS18B20_TCONV_12BIT	inc/ds18x20.h	46;"	d
+DS18B20_TCONV_9BIT	inc/ds18x20.h	49;"	d
+DS18S20_ID	inc/ds18x20.h	23;"	d
+DS18S20_TCONV	inc/ds18x20.h	50;"	d
+DS18X20_CONVERT_T	inc/ds18x20.h	26;"	d
+DS18X20_COPYSP_DELAY	inc/ds18x20.h	61;"	d
+DS18X20_COPY_SCRATCHPAD	inc/ds18x20.h	59;"	d
+DS18X20_EE_RECALL	inc/ds18x20.h	30;"	d
+DS18X20_EE_WRITE	inc/ds18x20.h	29;"	d
+DS18X20_ERROR	inc/ds18x20.h	15;"	d
+DS18X20_ERROR_CRC	inc/ds18x20.h	17;"	d
+DS18X20_FRACCONV	inc/ds18x20.h	53;"	d
+DS18X20_H_	inc/ds18x20.h	2;"	d
+DS18X20_OK	inc/ds18x20.h	14;"	d
+DS18X20_POWER_EXTERN	inc/ds18x20.h	20;"	d
+DS18X20_POWER_PARASITE	inc/ds18x20.h	19;"	d
+DS18X20_READ	inc/ds18x20.h	27;"	d
+DS18X20_READ_POWER_SUPPLY	inc/ds18x20.h	31;"	d
+DS18X20_RECALL_E2	inc/ds18x20.h	60;"	d
+DS18X20_SP_SIZE	inc/ds18x20.h	55;"	d
+DS18X20_START_FAIL	inc/ds18x20.h	16;"	d
+DS18X20_TH_REG	inc/ds18x20.h	62;"	d
+DS18X20_TL_REG	inc/ds18x20.h	63;"	d
+DS18X20_VERBOSE	inc/ds18x20.h	11;"	d
+DS18X20_WRITE	inc/ds18x20.h	28;"	d
+DS18X20_WRITE_SCRATCHPAD	inc/ds18x20.h	58;"	d
+DS18X20_copy_scratchpad	inc/ds18x20.h	/^uint8_t DS18X20_copy_scratchpad( uint8_t with_power_extern, uint8_t id[] );$/;"	p	signature:( uint8_t with_power_extern, uint8_t id[] )
+DS18X20_copy_scratchpad	src/ds18x20.c	/^uint8_t DS18X20_copy_scratchpad( uint8_t with_power_extern,$/;"	f	signature:( uint8_t with_power_extern, uint8_t id[] )
+DS18X20_find_sensor	inc/ds18x20.h	/^void DS18X20_find_sensor(uint8_t *diff, uint8_t id[]);$/;"	p	signature:(uint8_t *diff, uint8_t id[])
+DS18X20_find_sensor	src/ds18x20.c	/^void DS18X20_find_sensor(uint8_t *diff, uint8_t id[]) {$/;"	f	signature:(uint8_t *diff, uint8_t id[])
+DS18X20_get_power_status	inc/ds18x20.h	/^uint8_t	DS18X20_get_power_status(uint8_t id[]);$/;"	p	signature:(uint8_t id[])
+DS18X20_meas_to_cel	inc/ds18x20.h	/^uint8_t DS18X20_meas_to_cel( uint8_t fc, uint8_t *sp, uint8_t* subzero, uint8_t* cel, uint8_t* cel_frac_bits);$/;"	p	signature:( uint8_t fc, uint8_t *sp, uint8_t* subzero, uint8_t* cel, uint8_t* cel_frac_bits)
+DS18X20_meas_to_cel	src/ds18x20.c	/^uint8_t DS18X20_meas_to_cel(uint8_t fc, uint8_t *sp, uint8_t* subzero,$/;"	f	signature:(uint8_t fc, uint8_t *sp, uint8_t* subzero, uint8_t* cel, uint8_t* cel_frac_bits)
+DS18X20_read_meas	inc/ds18x20.h	/^uint8_t DS18X20_read_meas(uint8_t id[],uint8_t res_meas[] );$/;"	p	signature:(uint8_t id[],uint8_t res_meas[] )
+DS18X20_read_meas	src/ds18x20.c	/^uint8_t DS18X20_read_meas(uint8_t id[], uint8_t res_meas[])$/;"	f	signature:(uint8_t id[], uint8_t res_meas[])
+DS18X20_read_meas_single	inc/ds18x20.h	/^uint8_t DS18X20_read_meas_single(uint8_t familycode, uint8_t *subzero, uint8_t *cel, uint8_t *cel_frac_bits);$/;"	p	signature:(uint8_t familycode, uint8_t *subzero, uint8_t *cel, uint8_t *cel_frac_bits)
+DS18X20_read_meas_single	src/ds18x20.c	/^uint8_t DS18X20_read_meas_single(uint8_t familycode, uint8_t *subzero,$/;"	f	signature:(uint8_t familycode, uint8_t *subzero, uint8_t *cel, uint8_t *cel_frac_bits)
+DS18X20_read_scratchpad	inc/ds18x20.h	/^uint8_t DS18X20_read_scratchpad( uint8_t id[], uint8_t sp[]);$/;"	p	signature:( uint8_t id[], uint8_t sp[])
+DS18X20_read_scratchpad	src/ds18x20.c	/^uint8_t DS18X20_read_scratchpad( uint8_t id[], uint8_t sp[] )$/;"	f	signature:( uint8_t id[], uint8_t sp[] )
+DS18X20_recall_E2	inc/ds18x20.h	/^uint8_t DS18X20_recall_E2( uint8_t id[] );$/;"	p	signature:( uint8_t id[] )
+DS18X20_recall_E2	src/ds18x20.c	/^uint8_t DS18X20_recall_E2( uint8_t id[] )$/;"	f	signature:( uint8_t id[] )
+DS18X20_start_meas	inc/ds18x20.h	/^uint8_t DS18X20_start_meas( uint8_t with_external, uint8_t id[]);$/;"	p	signature:( uint8_t with_external, uint8_t id[])
+DS18X20_start_meas	src/ds18x20.c	/^uint8_t DS18X20_start_meas(uint8_t with_power_extern, uint8_t id[]) {$/;"	f	signature:(uint8_t with_power_extern, uint8_t id[])
+DS18X20_temp_cmp	inc/ds18x20.h	/^int8_t DS18X20_temp_cmp(uint8_t subzero1, uint16_t cel1, uint8_t subzero2, uint16_t cel2);$/;"	p	signature:(uint8_t subzero1, uint16_t cel1, uint8_t subzero2, uint16_t cel2)
+DS18X20_temp_to_decicel	inc/ds18x20.h	/^uint16_t DS18X20_temp_to_decicel(uint8_t res_meas[]);$/;"	p	signature:(uint8_t res_meas[])
+DS18X20_temp_to_decicel	src/ds18x20.c	/^uint16_t DS18X20_temp_to_decicel(uint8_t res_meas[])$/;"	f	signature:(uint8_t res_meas[])
+DS18X20_write_scratchpad	inc/ds18x20.h	/^uint8_t DS18X20_write_scratchpad( uint8_t id[], uint8_t th, uint8_t tl, uint8_t conf);$/;"	p	signature:( uint8_t id[], uint8_t th, uint8_t tl, uint8_t conf)
+DS18X20_write_scratchpad	src/ds18x20.c	/^uint8_t DS18X20_write_scratchpad( uint8_t id[],$/;"	f	signature:( uint8_t id[], uint8_t th, uint8_t tl, uint8_t conf)
 DataIdx	src/printf-stdarg.c	/^	int DataIdx;$/;"	l
 EU868_F1	inc/lorabase.h	/^enum { EU868_F1 = 868100000,      \/\/ g1   SF7-12 $/;"	e	enum:__anon53
 EU868_F2	inc/lorabase.h	/^       EU868_F2 = 868300000,      \/\/ g1   SF7-12 FSK SF7\/250         $/;"	e	enum:__anon53
@@ -243,6 +305,9 @@ FUNC_ADDR	src/lmic.c	/^    setupRx1(FUNC_ADDR(processRx1DnData));$/;"	p	file:
 FUNC_ADDR	src/lmic.c	/^    setupRx1(FUNC_ADDR(processRx1Jacc));$/;"	p	file:
 FUNC_ADDR	src/lmic.c	/^    txDone(sec2osticks(LMIC.rxDelay), FUNC_ADDR(setupRx1DnData));$/;"	p	file:
 F_CPU	inc/hal.h	44;"	d
+GPS_INC	inc/gps.h	2;"	d
+GPS_TRECKER	Makefile	/^GPS_TRECKER = 1$/;"	m
+GPS_t	inc/gps.h	/^}GPS_t;$/;"	t	typeref:struct:__anon102
 HDR_FTYPE	inc/lorabase.h	/^    HDR_FTYPE   = 0xE0,$/;"	e	enum:__anon84
 HDR_FTYPE_DADN	inc/lorabase.h	/^    HDR_FTYPE_DADN   = 0x60,  \/\/ data (unconfirmed) dn$/;"	e	enum:__anon86
 HDR_FTYPE_DAUP	inc/lorabase.h	/^    HDR_FTYPE_DAUP   = 0x40,  \/\/ data (unconfirmed) up$/;"	e	enum:__anon86
@@ -256,6 +321,7 @@ HDR_FTYPE_REJOIN	inc/lorabase.h	/^    HDR_FTYPE_REJOIN = 0xC0,  \/\/ rejoin for 
 HDR_MAJOR	inc/lorabase.h	/^    HDR_MAJOR   = 0x03$/;"	e	enum:__anon84
 HDR_MAJOR_V1	inc/lorabase.h	/^    HDR_MAJOR_V1 = 0x00,$/;"	e	enum:__anon87
 HDR_RFU	inc/lorabase.h	/^    HDR_RFU     = 0x1C,$/;"	e	enum:__anon84
+HEIGHT_BUF	inc/gps.h	16;"	d
 ILLEGAL_RPS	inc/lorabase.h	/^enum { ILLEGAL_RPS = 0xFF };$/;"	e	enum:__anon27
 IRQ_FSK1_MODEREADY_MASK	src/radio.c	222;"	d	file:
 IRQ_FSK1_PLLLOCK_MASK	src/radio.c	225;"	d	file:
@@ -281,12 +347,15 @@ IRQ_LORA_HEADER_MASK	src/radio.c	216;"	d	file:
 IRQ_LORA_RXDONE_MASK	src/radio.c	214;"	d	file:
 IRQ_LORA_RXTOUT_MASK	src/radio.c	213;"	d	file:
 IRQ_LORA_TXDONE_MASK	src/radio.c	217;"	d	file:
+ISR	src/gps.c	/^ISR(USART_RX_vect)$/;"	f
 ISR	src/hal.c	/^ISR(INT0_vect)$/;"	f
+ISR	src/hal.c	/^ISR(PCINT2_vect)$/;"	f
 ISR	src/hal.c	/^ISR(TIMER0_OVF_vect)$/;"	f
 ISR	src/hal.c	/^ISR(USART_TX_vect)$/;"	f
 JOIN_GUARD_ms	inc/lmic.h	/^enum { JOIN_GUARD_ms      =  9000 };  \/\/ msecs - don't start Join Req\/Acc transaction before beacon$/;"	e	enum:__anon11
 JOIN_GUARD_osticks	src/lmic.c	41;"	d	file:
 KEEP_TXPOW	inc/lmic.h	/^enum { KEEP_TXPOW = -128 };$/;"	e	enum:__anon20
+LATITUDE_BUF	inc/gps.h	13;"	d
 LD	Makefile	/^LD = avr-gcc$/;"	m
 LED_DDR	inc/hal.h	40;"	d
 LED_PIN	inc/hal.h	41;"	d
@@ -307,9 +376,9 @@ LINK_CHECK_CONT	inc/lmic.h	/^enum { LINK_CHECK_CONT    =  12 ,    \/\/ continue 
 LINK_CHECK_DEAD	inc/lmic.h	/^       LINK_CHECK_DEAD    =  24 ,    \/\/ after this UP frames and no response from NWK assume link is dead$/;"	e	enum:__anon8
 LINK_CHECK_INIT	inc/lmic.h	/^       LINK_CHECK_INIT    = -12 ,    \/\/ UP frame count until we inc datarate$/;"	e	enum:__anon8
 LINK_CHECK_OFF	inc/lmic.h	/^       LINK_CHECK_OFF     =-128 };   \/\/ link check disabled$/;"	e	enum:__anon8
-LMICHAL_radio_tx_power_policy_20dBm	inc/hal.h	/^	LMICHAL_radio_tx_power_policy_20dBm	= 2,$/;"	e	enum:__anon102
-LMICHAL_radio_tx_power_policy_paboost	inc/hal.h	/^	LMICHAL_radio_tx_power_policy_paboost	= 1,$/;"	e	enum:__anon102
-LMICHAL_radio_tx_power_policy_rfo	inc/hal.h	/^	LMICHAL_radio_tx_power_policy_rfo	= 0,$/;"	e	enum:__anon102
+LMICHAL_radio_tx_power_policy_20dBm	inc/hal.h	/^	LMICHAL_radio_tx_power_policy_20dBm	= 2,$/;"	e	enum:__anon103
+LMICHAL_radio_tx_power_policy_paboost	inc/hal.h	/^	LMICHAL_radio_tx_power_policy_paboost	= 1,$/;"	e	enum:__anon103
+LMICHAL_radio_tx_power_policy_rfo	inc/hal.h	/^	LMICHAL_radio_tx_power_policy_rfo	= 0,$/;"	e	enum:__anon103
 LMIC_VERSION_BUILD	inc/lmic.h	40;"	d
 LMIC_VERSION_MAJOR	inc/lmic.h	38;"	d
 LMIC_VERSION_MINOR	inc/lmic.h	39;"	d
@@ -355,6 +424,7 @@ LMIC_tryRejoin	inc/lmic.h	/^void  LMIC_tryRejoin     (void);$/;"	p	signature:(vo
 LMIC_tryRejoin	src/lmic.c	/^void LMIC_tryRejoin (void) {$/;"	f	signature:(void)
 LNA_RX_GAIN	src/radio.c	271;"	d	file:
 LNA_RX_GAIN	src/radio.c	273;"	d	file:
+LONGITUDE_BUF	inc/gps.h	14;"	d
 LORAFeiMib	src/radio.c	97;"	d	file:
 LORARegDetectOptimize	src/radio.c	109;"	d	file:
 LORARegDetectionThreshold	src/radio.c	117;"	d	file:
@@ -402,6 +472,7 @@ MAP_DIO1_LORA_RXTOUT	src/radio.c	243;"	d	file:
 MAP_DIO2_FSK_TIMEOUT	src/radio.c	250;"	d	file:
 MAP_DIO2_FSK_TXNOP	src/radio.c	249;"	d	file:
 MAP_DIO2_LORA_NOP	src/radio.c	245;"	d	file:
+MAXSENSORS	inc/ds18x20.h	6;"	d
 MAX_BANDS	inc/lmic.h	/^enum { MAX_BANDS    =  4 };$/;"	e	enum:__anon15
 MAX_CHANNELS	inc/lmic.h	/^enum { MAX_CHANNELS = 16 };      \/\/!< Max supported channels$/;"	e	enum:__anon14
 MAX_FRAME_LEN	inc/lmic.h	/^enum { MAX_FRAME_LEN      =  64 };   \/\/!< Library cap on max frame length$/;"	e	enum:__anon4
@@ -474,9 +545,9 @@ MCU	Makefile	/^MCU = mcu=atmega328p$/;"	m
 MINRX_SYMS	src/lmic.c	32;"	d	file:
 NETID_MASK	inc/lmic.h	/^enum { NETID_NONE=(int)~0U, NETID_MASK=(int)0xFFFFFF };$/;"	e	enum:__anon23
 NETID_NONE	inc/lmic.h	/^enum { NETID_NONE=(int)~0U, NETID_MASK=(int)0xFFFFFF };$/;"	e	enum:__anon23
-NSS_DDR	inc/hal.h	53;"	d
-NSS_PIN	inc/hal.h	55;"	d
-NSS_PORT	inc/hal.h	51;"	d
+NSS_DDR	inc/hal.h	54;"	d
+NSS_PIN	inc/hal.h	56;"	d
+NSS_PORT	inc/hal.h	52;"	d
 NUM_DEFAULT_CHANNELS	src/lmic.c	/^enum { NUM_DEFAULT_CHANNELS=6 };$/;"	e	enum:__anon3	file:
 NWKID_BITS	inc/lorabase.h	/^    NWKID_BITS = 7$/;"	e	enum:__anon90
 NWKID_MASK	inc/lorabase.h	/^    NWKID_MASK = (int)0xFE000000,$/;"	e	enum:__anon90
@@ -545,6 +616,23 @@ OP_TXDATA	inc/lmic.h	/^       OP_TXDATA   = 0x0008, \/\/ TX user data (buffered 
 OP_TXRXPEND	inc/lmic.h	/^       OP_TXRXPEND = 0x0080, \/\/ TX\/RX transaction pending$/;"	e	enum:__anon24
 OS	src/oslmic.c	/^} OS;$/;"	v	typeref:struct:__anon1	file:
 OSTICKS_PER_SEC	inc/oslmic.h	112;"	d
+OW_DATA_ERR	inc/onewire.h	31;"	d
+OW_DDR	inc/onewire.h	21;"	d
+OW_DIR_IN	src/onewire.c	18;"	d	file:
+OW_DIR_OUT	src/onewire.c	19;"	d	file:
+OW_GET_IN	src/onewire.c	15;"	d	file:
+OW_IN	inc/onewire.h	22;"	d
+OW_LAST_DEVICE	inc/onewire.h	32;"	d
+OW_MATCH_ROM	inc/onewire.h	25;"	d
+OW_OUT	inc/onewire.h	20;"	d
+OW_OUT_HIGH	src/onewire.c	17;"	d	file:
+OW_OUT_LOW	src/onewire.c	16;"	d	file:
+OW_PIN	inc/onewire.h	23;"	d
+OW_PRESENCE_ERR	inc/onewire.h	30;"	d
+OW_ROMCODE_SIZE	inc/onewire.h	36;"	d
+OW_SEARCH_FIRST	inc/onewire.h	29;"	d
+OW_SEARCH_ROM	inc/onewire.h	27;"	d
+OW_SKIP_ROM	inc/onewire.h	26;"	d
 PAD_RIGHT	src/printf-stdarg.c	62;"	d	file:
 PAD_ZERO	src/printf-stdarg.c	63;"	d	file:
 PAMBL_FSK	src/lmic.c	35;"	d	file:
@@ -567,9 +655,9 @@ RF_IMAGECAL_IMAGECAL_RUNNING	src/radio.c	261;"	d	file:
 RF_IMAGECAL_IMAGECAL_START	src/radio.c	259;"	d	file:
 RM	Makefile	/^RM = rm$/;"	m
 RSSI_OFF	inc/lorabase.h	/^enum { RSSI_OFF=64, SNR_SCALEUP=4 };$/;"	e	enum:__anon101
-RST_DDR	inc/hal.h	54;"	d
-RST_PIN	inc/hal.h	56;"	d
-RST_PORT	inc/hal.h	52;"	d
+RST_DDR	inc/hal.h	55;"	d
+RST_PIN	inc/hal.h	57;"	d
+RST_PORT	inc/hal.h	53;"	d
 RXLEN_FSK	src/lmic.c	37;"	d	file:
 RXLORA_RXMODE_RSSI_REG_MODEM_CONFIG1	src/radio.c	189;"	d	file:
 RXLORA_RXMODE_RSSI_REG_MODEM_CONFIG2	src/radio.c	191;"	d	file:
@@ -577,6 +665,7 @@ RXLORA_RXMODE_RSSI_REG_MODEM_CONFIG2	src/radio.c	193;"	d	file:
 RXMODE_RSSI	src/radio.c	/^enum { RXMODE_SINGLE, RXMODE_SCAN, RXMODE_RSSI };$/;"	e	enum:__anon2	file:
 RXMODE_SCAN	src/radio.c	/^enum { RXMODE_SINGLE, RXMODE_SCAN, RXMODE_RSSI };$/;"	e	enum:__anon2	file:
 RXMODE_SINGLE	src/radio.c	/^enum { RXMODE_SINGLE, RXMODE_SCAN, RXMODE_RSSI };$/;"	e	enum:__anon2	file:
+RX_BUF	inc/gps.h	10;"	d
 RX_RAMPUP	inc/oslmic.h	105;"	d
 RegDioMapping1	src/radio.c	127;"	d	file:
 RegDioMapping2	src/radio.c	128;"	d	file:
@@ -591,6 +680,7 @@ RegPaConfig	src/radio.c	41;"	d	file:
 RegPaDac	src/radio.c	136;"	d	file:
 RegPaRamp	src/radio.c	42;"	d	file:
 RegVersion	src/radio.c	129;"	d	file:
+SATELITE_BUF	inc/gps.h	15;"	d
 SENSITIVITY	src/lmic.c	/^static const u1_t SENSITIVITY[7][3] = {$/;"	v	file:
 SF10	inc/lorabase.h	/^enum _sf_t { FSK=0, SF7, SF8, SF9, SF10, SF11, SF12, SFrfu };$/;"	e	enum:_sf_t
 SF11	inc/lorabase.h	/^enum _sf_t { FSK=0, SF7, SF8, SF9, SF10, SF11, SF12, SFrfu };$/;"	e	enum:_sf_t
@@ -601,11 +691,11 @@ SF9	inc/lorabase.h	/^enum _sf_t { FSK=0, SF7, SF8, SF9, SF10, SF11, SF12, SFrfu 
 SFrfu	inc/lorabase.h	/^enum _sf_t { FSK=0, SF7, SF8, SF9, SF10, SF11, SF12, SFrfu };$/;"	e	enum:_sf_t
 SIZEOFEXPR	inc/oslmic.h	79;"	d
 SNR_SCALEUP	inc/lorabase.h	/^enum { RSSI_OFF=64, SNR_SCALEUP=4 };$/;"	e	enum:__anon101
-SPI_DDR	inc/hal.h	58;"	d
-SPI_MISO	inc/hal.h	60;"	d
-SPI_MOSI	inc/hal.h	59;"	d
-SPI_PORT	inc/hal.h	57;"	d
-SPI_SCK	inc/hal.h	61;"	d
+SPI_DDR	inc/hal.h	59;"	d
+SPI_MISO	inc/hal.h	61;"	d
+SPI_MOSI	inc/hal.h	60;"	d
+SPI_PORT	inc/hal.h	58;"	d
+SPI_SCK	inc/hal.h	62;"	d
 SRC_DIR	Makefile	/^SRC_DIR = src\/$/;"	m
 STD_PREAMBLE_LEN	inc/lorabase.h	/^enum { STD_PREAMBLE_LEN  =  8 };$/;"	e	enum:__anon30
 SX1272_MC1_BW_125	src/radio.c	152;"	d	file:
@@ -649,6 +739,7 @@ TABLE_GET_U1_TWODIM	inc/oslmic.h	253;"	d
 TABLE_GET_U2	inc/oslmic.h	248;"	d
 TABLE_GET_U4	inc/oslmic.h	250;"	d
 TARGET	Makefile	/^TARGET = lora328$/;"	m
+TIME_BUF	inc/gps.h	12;"	d
 TIME_RESYNC	inc/lmic.h	/^enum { TIME_RESYNC        = 6*128 }; \/\/ secs$/;"	e	enum:__anon9
 TXCONF_ATTEMPTS	inc/lmic.h	/^enum { TXCONF_ATTEMPTS    =   8 };   \/\/!< Transmit attempts for confirmed frames$/;"	e	enum:__anon5
 TXPOWLEVELS	src/lmic.c	/^static const s1_t TXPOWLEVELS[] = {$/;"	v	file:
@@ -677,9 +768,18 @@ US915_500kHz_UPFSTEP	inc/lorabase.h	/^       US915_500kHz_UPFSTEP =   1600000,$/
 US915_FREQ_MAX	inc/lorabase.h	/^       US915_FREQ_MAX = 928000000 };$/;"	e	enum:__anon69
 US915_FREQ_MIN	inc/lorabase.h	/^enum { US915_FREQ_MIN = 902000000,$/;"	e	enum:__anon69
 USART_BAUDRATE	inc/hal.h	45;"	d
-USART_RX_BUFFER_SIZE	inc/hal.h	48;"	d
-USART_TX_BUFFER_SIZE	inc/hal.h	47;"	d
+USART_RX_BUFFER_SIZE	inc/hal.h	49;"	d
+USART_TX_BUFFER_SIZE	inc/hal.h	48;"	d
+_1wire_h_	inc/onewire.h	2;"	d
 _DR2RPS_CRC	src/lmic.c	/^const u1_t _DR2RPS_CRC[] = {$/;"	v
+__anon102::dir_latit	inc/gps.h	/^	uint8_t dir_latit;$/;"	m	struct:__anon102	access:public
+__anon102::dir_longit	inc/gps.h	/^	uint8_t dir_longit;$/;"	m	struct:__anon102	access:public
+__anon102::height	inc/gps.h	/^	uint8_t height[HEIGHT_BUF];$/;"	m	struct:__anon102	access:public
+__anon102::latitude	inc/gps.h	/^	uint8_t latitude[LATITUDE_BUF];$/;"	m	struct:__anon102	access:public
+__anon102::longitude	inc/gps.h	/^	uint8_t longitude[LONGITUDE_BUF];$/;"	m	struct:__anon102	access:public
+__anon102::num_satelites	inc/gps.h	/^	uint8_t num_satelites[SATELITE_BUF];$/;"	m	struct:__anon102	access:public
+__anon102::quality	inc/gps.h	/^	uint8_t quality;$/;"	m	struct:__anon102	access:public
+__anon102::time	inc/gps.h	/^	uint8_t time[TIME_BUF];$/;"	m	struct:__anon102	access:public
 __anon1::runnablejobs	src/oslmic.c	/^    osjob_t* runnablejobs;$/;"	m	struct:__anon1	file:	access:public
 __anon1::scheduledjobs	src/oslmic.c	/^    osjob_t* scheduledjobs;$/;"	m	struct:__anon1	file:	access:public
 __io_putchar	src/printf-stdarg.c	/^int __io_putchar(int ch)$/;"	f	signature:(int ch)
@@ -723,6 +823,7 @@ assertDR	inc/lorabase.h	/^inline dr_t  assertDR (dr_t dr) { return _DR2RPS_CRC[d
 assertDR	src/lmic.c	/^extern inline dr_t  assertDR (dr_t dr);$/;"	p	file:	signature:(dr_t dr)
 avail	inc/lmic.h	/^    ostime_t avail;     \/\/ channel is blocked until this time$/;"	m	struct:band_t	access:public
 b	src/aes.c	/^    u4_t b;$/;"	l
+b	src/onewire.c	/^	uint8_t b;$/;"	l
 b	src/radio.c	/^            u1_t b; \/\/ wait for two non-identical subsequent least-significant bits$/;"	l
 band	src/lmic.c	/^        u1_t band=0;$/;"	l
 band	src/lmic.c	/^    xref2band_t band = &LMIC.bands[freq & 0x3];$/;"	l
@@ -748,10 +849,12 @@ bcninfo_t::rssi	inc/lmic.h	/^    s1_t     rssi;    \/\/!< Adjusted RSSI value of
 bcninfo_t::snr	inc/lmic.h	/^    s1_t     snr;     \/\/!< Scaled SNR value of last received beacon$/;"	m	struct:bcninfo_t	access:public
 bcninfo_t::time	inc/lmic.h	/^    u4_t     time;    \/\/!< GPS time in seconds of last beacon (received or surrogate)$/;"	m	struct:bcninfo_t	access:public
 bcninfo_t::txtime	inc/lmic.h	/^    ostime_t txtime;  \/\/!< Time when the beacon was sent$/;"	m	struct:bcninfo_t	access:public
+bit_counter	src/crc8.c	/^   uint8_t  bit_counter;$/;"	l
 bit_t	inc/oslmic.h	/^typedef uint8_t            bit_t;$/;"	t
 bmap	src/lmic.c	/^    u1_t bmap=0xF;$/;"	l
 bs	src/printf-stdarg.c	/^	unsigned int bs = sizeof(int)*8;$/;"	l
 buf	src/printf-stdarg.c	/^	char buf[80];$/;"	l
+buf_rx	src/gps.c	/^static uint8_t buf_rx[RX_BUF];$/;"	v	file:
 buildDataFrame	src/lmic.c	/^static void buildDataFrame (void) {$/;"	f	file:	signature:(void)
 buildJoinRequest	src/lmic.c	/^static void buildJoinRequest (u1_t ftype) {$/;"	f	file:	signature:(u1_t ftype)
 bw	src/lmic.c	/^    u1_t bw = getBw(rps);  \/\/ 0,1,2 = 125,250,500kHz$/;"	l
@@ -762,6 +865,13 @@ calcAirTime	src/lmic.c	/^ostime_t calcAirTime (rps_t rps, u1_t plen) {$/;"	f	sig
 calcBcnRxWindowFromMillis	src/lmic.c	/^static void calcBcnRxWindowFromMillis (u1_t ms, bit_t ini) {$/;"	f	file:	signature:(u1_t ms, bit_t ini)
 calcRxWindow	src/lmic.c	/^static ostime_t calcRxWindow (u1_t secs, dr_t dr) {$/;"	f	file:	signature:(u1_t secs, dr_t dr)
 cap	src/lmic.c	/^            u1_t cap = opts[oidx+1];$/;"	l
+cel	src/ds18x20.c	/^	uint8_t cel = res_meas[1];$/;"	l
+cel	src/ds18x20.c	/^	uint8_t subzero, cel, cel_frac_bits;$/;"	l
+cel	src/main.c	/^	u1_t cel;$/;"	l
+cel_frac_bits	src/ds18x20.c	/^	uint8_t cel_frac_bits = res_meas[2];$/;"	l
+cel_frac_bits	src/ds18x20.c	/^	uint8_t subzero, cel, cel_frac_bits;$/;"	l
+cel_frac_bits	src/main.c	/^	u1_t cel_frac_bits;$/;"	l
+ch	src/gps.c	/^	uint8_t ch = UDR0;$/;"	l
 chRnd	inc/lmic.h	/^    u2_t        chRnd;        \/\/ channel randomizer$/;"	m	struct:lmic_t	access:public
 channelDrMap	inc/lmic.h	/^    u2_t        channelDrMap[MAX_CHANNELS];$/;"	m	struct:lmic_t	access:public
 channelFreq	inc/lmic.h	/^    u4_t        channelFreq[MAX_CHANNELS];$/;"	m	struct:lmic_t	access:public
@@ -780,14 +890,21 @@ configChannel	src/radio.c	/^static void configChannel () {$/;"	f	file:
 configLoraModem	src/radio.c	/^static void configLoraModem () {$/;"	f	file:
 configPower	src/radio.c	/^static void configPower () {$/;"	f	file:
 convFreq	src/lmic.c	/^static u4_t convFreq (xref2u1_t ptr) {$/;"	f	file:	signature:(xref2u1_t ptr)
+copy_buf	src/gps.c	/^uint8_t copy_buf(uint8_t* in_buf, uint8_t in_idx, uint8_t sep, uint8_t* out_buf, uint8_t size_outBuf)$/;"	f	signature:(uint8_t* in_buf, uint8_t in_idx, uint8_t sep, uint8_t* out_buf, uint8_t size_outBuf)
 cr_t	inc/lorabase.h	/^typedef u1_t cr_t;$/;"	t
+crc	src/crc8.c	/^ { uint8_t	 crc;$/;"	l
+crc8	inc/crc8.h	/^uint8_t	crc8 (uint8_t* data_in, uint16_t number_of_bytes_to_read);$/;"	p	signature:(uint8_t* data_in, uint16_t number_of_bytes_to_read)
+crc8	src/crc8.c	/^uint8_t	crc8 ( uint8_t *data_in, uint16_t number_of_bytes_to_read )$/;"	f	signature:( uint8_t *data_in, uint16_t number_of_bytes_to_read )
 d	src/hal.c	/^    s4_t d = time - t;$/;"	l
 d	src/lmic.c	/^    xref2u1_t d = LMIC.frame;$/;"	l
+data	src/crc8.c	/^   uint8_t  data;$/;"	l
 data	src/hal.c	/^        u1_t data = is_read ? 0x00 : *buf;$/;"	l
 dataBeg	inc/lmic.h	/^    u1_t        dataBeg;    \/\/ 0 or start of data (dataBeg-1 is port)$/;"	m	struct:lmic_t	access:public
 dataLen	inc/lmic.h	/^    u1_t        dataLen;    \/\/ 0 no data or zero length data, >0 byte count of data$/;"	m	struct:lmic_t	access:public
+data_gps	inc/gps.h	/^GPS_t data_gps;$/;"	v
 datarate	inc/lmic.h	/^    u1_t        datarate;     \/\/ current data rate$/;"	m	struct:lmic_t	access:public
 deadline	inc/oslmic.h	/^    ostime_t deadline;$/;"	m	struct:osjob_t	access:public
+debug_event	src/main.c	/^void debug_event (int ev) {$/;"	f	signature:(int ev)
 decDR	inc/lorabase.h	/^inline dr_t  decDR    (dr_t dr) { return _DR2RPS_CRC[dr  ]==ILLEGAL_RPS ? dr : (dr_t)(dr-1); } \/\/ decrease data rate$/;"	f	signature:(dr_t dr)
 decDR	src/lmic.c	/^extern inline dr_t  decDR    (dr_t dr);$/;"	p	file:	signature:(dr_t dr)
 decodeBeacon	src/lmic.c	/^static int decodeBeacon (void) {$/;"	f	file:	signature:(void)
@@ -800,6 +917,8 @@ devaddr	inc/lmic.h	/^    devaddr_t   devaddr;$/;"	m	struct:lmic_t	access:public
 devaddr_t	inc/lorabase.h	/^typedef u4_t devaddr_t;$/;"	t
 devsAns	inc/lmic.h	/^    bit_t       devsAns;      \/\/ device status answer pending$/;"	m	struct:lmic_t	access:public
 diff	src/lmic.c	/^            s2_t diff = LMIC.drift - drift;$/;"	l
+dir_latit	inc/gps.h	/^	uint8_t dir_latit;$/;"	m	struct:__anon102	access:public
+dir_longit	inc/gps.h	/^	uint8_t dir_longit;$/;"	m	struct:__anon102	access:public
 div	src/lmic.c	/^    int div = 15625;$/;"	l
 dlen	src/lmic.c	/^    int  dlen   = LMIC.dataLen;$/;"	l
 dlen	src/lmic.c	/^    u1_t dlen = LMIC.dataLen;$/;"	l
@@ -815,7 +934,7 @@ dr	inc/lmic.h	/^    u1_t     dr;$/;"	m	struct:rxsched_t	access:public
 dr	src/lmic.c	/^            dr_t dr = (dr_t)(opts[oidx+1] & 0x0F);$/;"	l
 dr	src/lmic.c	/^            dr_t dr = (dr_t)(p1>>MCMD_LADR_DR_SHIFT);$/;"	l
 dr	src/lmic.c	/^        s1_t dr = DR_SF7 - ++LMIC.txCnt;$/;"	l
-dr2hsym	src/lmic.c	385;"	d	file:
+dr2hsym	src/lmic.c	384;"	d	file:
 dr_t	inc/lorabase.h	/^typedef u1_t dr_t;$/;"	t
 drift	inc/lmic.h	/^    s2_t        drift;        \/\/ last measured drift$/;"	m	struct:lmic_t	access:public
 drift	src/lmic.c	/^        s2_t drift = BCN_INTV_osticks - (LMIC.bcninfo.txtime - lasttx);$/;"	l
@@ -827,11 +946,14 @@ end	src/lmic.c	/^    int  end = OFF_DAT_OPTS;$/;"	l
 engineUpdate	src/lmic.c	/^static void engineUpdate (void) {$/;"	f	file:	signature:(void)
 engineUpdate	src/lmic.c	/^static void engineUpdate(void);$/;"	p	file:	signature:(void)
 err	src/lmic.c	/^    ostime_t rxoff, err;$/;"	l
+err	src/onewire.c	/^	uint8_t err;$/;"	l
 errcr	inc/lmic.h	/^    u1_t        errcr;        \/\/ error coding rate (used for TX only)$/;"	m	struct:lmic_t	access:public
 ev	src/lmic.c	/^    ev_t ev;$/;"	l
 ev_t	inc/lmic.h	/^typedef enum _ev_t ev_t;$/;"	t	typeref:enum:_ev_t
+evnames	src/main.c	/^    static char* evnames[] = {$/;"	l	file:
 failed	src/lmic.c	/^    u1_t failed = 0;$/;"	l
 fct	src/lmic.c	/^    int  fct   = d[OFF_DAT_FCT];$/;"	l
+feedback_bit	src/crc8.c	/^   uint8_t  feedback_bit;$/;"	l
 flags	inc/lmic.h	/^    u1_t     flags;   \/\/!< Last beacon reception and tracking states. See BCN_* values.$/;"	m	struct:bcninfo_t	access:public
 flags	src/lmic.c	/^            u1_t flags = 0x80;$/;"	l
 flags	src/lmic.c	/^    u1_t flags = LMIC.bcninfo.flags;$/;"	l
@@ -865,6 +987,7 @@ getSf	inc/lorabase.h	/^inline sf_t  getSf   (rps_t params)            { return  
 getSf	src/lmic.c	/^extern inline sf_t  getSf    (rps_t params);$/;"	p	file:	signature:(rps_t params)
 globalDutyAvail	inc/lmic.h	/^    ostime_t    globalDutyAvail; \/\/ time device can send again$/;"	m	struct:lmic_t	access:public
 globalDutyRate	inc/lmic.h	/^    u1_t        globalDutyRate;  \/\/ max rate: 1\/2^k$/;"	m	struct:lmic_t	access:public
+h	src/ds18x20.c	/^	uint16_t h;$/;"	l
 hal_checkTimer	inc/hal.h	/^u2_t hal_checkTimer (u4_t targettime);$/;"	p	signature:(u4_t targettime)
 hal_checkTimer	src/hal.c	/^u2_t hal_checkTimer (u4_t targettime)$/;"	f	signature:(u4_t targettime)
 hal_deep_sleep	inc/hal.h	/^void hal_deep_sleep (u2_t ticks);$/;"	p	signature:(u2_t ticks)
@@ -901,12 +1024,22 @@ hal_waitUntil	inc/hal.h	/^void hal_waitUntil (u4_t time);$/;"	p	signature:(u4_t 
 hal_waitUntil	src/hal.c	/^void hal_waitUntil (u4_t time)$/;"	f	signature:(u4_t time)
 hdr	src/lmic.c	/^    u1_t hdr    = d[0];$/;"	l
 hdr	src/lmic.c	/^    u1_t hdr  = LMIC.frame[0];$/;"	l
+height	inc/gps.h	/^	uint8_t height[HEIGHT_BUF];$/;"	m	struct:__anon102	access:public
 hsym	src/lmic.c	/^    ostime_t hsym = dr2hsym(DR_BCN);$/;"	l
 i	src/aes.c	/^    int i;$/;"	l
+i	src/ds18x20.c	/^	uint8_t i;$/;"	l
+i	src/ds18x20.c	/^{	uint8_t i;$/;"	l
+i	src/gps.c	/^	uint8_t i = 0;$/;"	l
+i	src/gps.c	/^	uint8_t i;$/;"	l
+i	src/onewire.c	/^	uint8_t i = 8, j;$/;"	l
+i	src/onewire.c	/^	uint8_t i, j, next_diff;$/;"	l
+i	src/onewire.c	/^	uint8_t i;$/;"	l
 i	src/printf-stdarg.c	/^	int i = 5;$/;"	l
 i	src/radio.c	/^    u1_t i = randbuf[0];$/;"	l
+idx	src/gps.c	/^	uint8_t idx = in_idx;$/;"	l
 incDR	inc/lorabase.h	/^inline dr_t  incDR    (dr_t dr) { return _DR2RPS_CRC[dr+2]==ILLEGAL_RPS ? dr : (dr_t)(dr+1); } \/\/ increase data rate$/;"	f	signature:(dr_t dr)
 incDR	src/lmic.c	/^extern inline dr_t  incDR    (dr_t dr);$/;"	p	file:	signature:(dr_t dr)
+ind	src/gps.c	/^volatile static uint8_t ind;$/;"	v	file:
 info	inc/lmic.h	/^    u1_t     info;    \/\/!< Info field of last beacon (valid only if BCN_FULL set)$/;"	m	struct:bcninfo_t	access:public
 iniChannelFreq	src/lmic.c	/^static const u4_t iniChannelFreq[12] = {$/;"	v	file:
 initDefaultChannels	src/lmic.c	/^static void initDefaultChannels (bit_t join) {$/;"	f	file:	signature:(bit_t join)
@@ -921,6 +1054,8 @@ isFasterDR	src/lmic.c	/^extern inline int isFasterDR (dr_t dr1, dr_t dr2);$/;"	p
 isSlowerDR	inc/lorabase.h	/^inline int isSlowerDR (dr_t dr1, dr_t dr2) { return dr1 < dr2; }$/;"	f	signature:(dr_t dr1, dr_t dr2)
 isSlowerDR	src/lmic.c	/^extern inline int isSlowerDR (dr_t dr1, dr_t dr2);$/;"	p	file:	signature:(dr_t dr1, dr_t dr2)
 isTESTMODE	src/lmic.c	59;"	d	file:
+j	src/onewire.c	/^	uint8_t i = 8, j;$/;"	l
+j	src/onewire.c	/^	uint8_t i, j, next_diff;$/;"	l
 j	src/oslmic.c	/^        osjob_t* j = NULL;$/;"	l
 jacc	src/lmic.c	/^        bit_t jacc = ((LMIC.opmode & (OP_JOINING|OP_REJOIN)) != 0 ? 1 : 0);$/;"	l
 jreqDone	src/lmic.c	/^static void jreqDone (xref2osjob_t osjob) {$/;"	f	file:	signature:(xref2osjob_t osjob)
@@ -931,6 +1066,7 @@ lastDriftDiff	inc/lmic.h	/^    s2_t        lastDriftDiff;$/;"	m	struct:lmic_t	ac
 lastchnl	inc/lmic.h	/^    u1_t     lastchnl;  \/\/ last used channel$/;"	m	struct:band_t	access:public
 lasttx	src/lmic.c	/^    ostime_t lasttx = LMIC.bcninfo.txtime;   \/\/ save here - decodeBeacon might overwrite$/;"	l
 lat	inc/lmic.h	/^    s4_t     lat;     \/\/!< Lat field of last beacon (valid only if BCN_FULL set)$/;"	m	struct:bcninfo_t	access:public
+latitude	inc/gps.h	/^	uint8_t latitude[LATITUDE_BUF];$/;"	m	struct:__anon102	access:public
 len	src/printf-stdarg.c	/^		register int len = 0;$/;"	l
 lmic_t	inc/lmic.h	/^struct lmic_t {$/;"	s
 lmic_t::adrAckReq	inc/lmic.h	/^    s1_t        adrAckReq;    \/\/ counter until we reset data rate (0=off)$/;"	m	struct:lmic_t	access:public
@@ -1003,6 +1139,8 @@ lmic_t::upRepeat	inc/lmic.h	/^    u1_t        upRepeat;     \/\/ configured up r
 lmic_t::xchDrMap	inc/lmic.h	/^    u2_t        xchDrMap[MAX_XCHANNELS];   \/\/ extra channel datarate ranges  ---XXX: ditto$/;"	m	struct:lmic_t	access:public
 lmic_t::xchFreq	inc/lmic.h	/^    u4_t        xchFreq[MAX_XCHANNELS];    \/\/ extra channel frequencies (if device is behind a repeater)$/;"	m	struct:lmic_t	access:public
 lon	inc/lmic.h	/^    s4_t     lon;     \/\/!< Lon field of last beacon (valid only if BCN_FULL set)$/;"	m	struct:bcninfo_t	access:public
+longitude	inc/gps.h	/^	uint8_t longitude[LONGITUDE_BUF];$/;"	m	struct:__anon102	access:public
+loop_count	src/crc8.c	/^   uint16_t loop_count;$/;"	l
 lowerDR	inc/lorabase.h	/^inline dr_t  lowerDR  (dr_t dr, u1_t n) { while(n--){dr=decDR(dr);} return dr; } \/\/ decrease data rate by n steps$/;"	f	signature:(dr_t dr, u1_t n)
 lowerDR	src/lmic.c	/^extern inline dr_t  lowerDR  (dr_t dr, u1_t n);$/;"	p	file:	signature:(dr_t dr, u1_t n)
 m	src/lmic.c	/^    int m = LMIC.rssi - RSSI_OFF - getSensitivity(LMIC.rps);$/;"	l
@@ -1014,14 +1152,15 @@ map	src/lmic.c	/^        u1_t map = LMIC.channelMap[64\/16]&0xFF;$/;"	l
 mapChannels	src/lmic.c	/^static u1_t mapChannels (u1_t chpage, u2_t chmap) {$/;"	f	file:	signature:(u1_t chpage, u2_t chmap)
 margin	inc/lmic.h	/^    u1_t        margin;$/;"	m	struct:lmic_t	access:public
 maxDriftDiff	inc/lmic.h	/^    s2_t        maxDriftDiff;$/;"	m	struct:lmic_t	access:public
-maxFrameLen	src/lmic.c	231;"	d	file:
-maxFrameLen	src/lmic.c	254;"	d	file:
+maxFrameLen	src/lmic.c	230;"	d	file:
+maxFrameLen	src/lmic.c	253;"	d	file:
 maxFrameLens	src/lmic.c	/^const u1_t maxFrameLens [] = { 24,66,142,255,255,255,255,255,  66,142 };$/;"	v
 maxFrameLens	src/lmic.c	/^const u1_t maxFrameLens [] = { 64,64,64,123 };$/;"	v
 mc1	src/radio.c	/^        u1_t mc1 = (getBw(LMIC.rps)<<6);$/;"	l
 mc1	src/radio.c	/^        u1_t mc1 = 0, mc2 = 0, mc3 = 0;$/;"	l
 mc2	src/radio.c	/^        u1_t mc1 = 0, mc2 = 0, mc3 = 0;$/;"	l
 mc3	src/radio.c	/^        u1_t mc1 = 0, mc2 = 0, mc3 = 0;$/;"	l
+meas	src/ds18x20.c	/^	uint16_t meas;$/;"	l
 mi	src/printf-stdarg.c	/^	int mi;$/;"	l
 mic	src/lmic.c	/^    u4_t mic  = os_rlsbf4(&LMIC.frame[dlen-4]); \/\/ safe before modified by encrypt!$/;"	l
 micB0	src/lmic.c	/^static void micB0 (u4_t devaddr, u4_t seqno, int dndir, int len) {$/;"	f	file:	signature:(u4_t devaddr, u4_t seqno, int dndir, int len)
@@ -1033,15 +1172,18 @@ ms2osticksCeil	inc/oslmic.h	126;"	d
 ms2osticksRound	inc/oslmic.h	127;"	d
 msbf4_read	src/aes.c	196;"	d	file:
 msbf4_write	src/aes.c	197;"	d	file:
+need_rounding	src/ds18x20.c	/^	uint8_t need_rounding[] = { 1, 3, 4, 6, 9, 11, 12, 14 };$/;"	l
 neg	src/printf-stdarg.c	/^	register int t, neg = 0, pc = 0;$/;"	l
 netid	inc/lmic.h	/^    u4_t        netid;        \/\/ current network id (~0 - none)$/;"	m	struct:lmic_t	access:public
 next	inc/oslmic.h	/^    struct osjob_t* next;$/;"	m	struct:osjob_t	typeref:struct:osjob_t::osjob_t	access:public
 nextJoinState	src/lmic.c	/^static ostime_t nextJoinState (void) {$/;"	f	file:	signature:(void)
 nextTx	src/lmic.c	/^static ostime_t nextTx (ostime_t now) {$/;"	f	file:	signature:(ostime_t now)
-nextTx	src/lmic.c	818;"	d	file:
+nextTx	src/lmic.c	817;"	d	file:
+next_diff	src/onewire.c	/^	uint8_t i, j, next_diff;$/;"	l
 noRXIQinversion	inc/lmic.h	/^    u1_t        noRXIQinversion;$/;"	m	struct:lmic_t	access:public
 now	src/lmic.c	/^    ostime_t now    = os_getTime();$/;"	l
 np	src/printf-stdarg.c	/^	char *np = 0;$/;"	l
+num_satelites	inc/gps.h	/^	uint8_t num_satelites[SATELITE_BUF];$/;"	m	struct:__anon102	access:public
 nwkKey	inc/lmic.h	/^    u1_t        nwkKey[16];   \/\/ network session key$/;"	m	struct:lmic_t	access:public
 nwkskey	src/main.c	/^	uint8_t nwkskey[sizeof(NWKSKEY)];$/;"	l
 off	src/lmic.c	/^    ostime_t off = os_rlsbf2(LMIC.frame) & (0x0FFF >> (7 - intvExp)); \/\/ random offset (slot units)$/;"	l
@@ -1108,6 +1250,26 @@ osjobcb_t	inc/oslmic.h	/^typedef void (*osjobcb_t) (struct osjob_t*);$/;"	t
 osticks2ms	inc/oslmic.h	121;"	d
 osticks2us	inc/oslmic.h	122;"	d
 ostime_t	inc/oslmic.h	/^typedef              s4_t  ostime_t;$/;"	t
+ow_bit_io	inc/onewire.h	/^uint8_t ow_bit_io( uint8_t b );$/;"	p	signature:( uint8_t b )
+ow_bit_io	src/onewire.c	/^uint8_t ow_bit_io(uint8_t b) {$/;"	f	signature:(uint8_t b)
+ow_byte_rd	inc/onewire.h	/^uint8_t ow_byte_rd( void );$/;"	p	signature:( void )
+ow_byte_rd	src/onewire.c	/^uint8_t ow_byte_rd(void) { \/\/ read by sending 0xff (a dontcare?)$/;"	f	signature:(void)
+ow_byte_wr	inc/onewire.h	/^uint8_t ow_byte_wr( uint8_t b );$/;"	p	signature:( uint8_t b )
+ow_byte_wr	src/onewire.c	/^uint8_t ow_byte_wr(uint8_t b) {$/;"	f	signature:(uint8_t b)
+ow_command	inc/onewire.h	/^void ow_command( uint8_t command, uint8_t *id );$/;"	p	signature:( uint8_t command, uint8_t *id )
+ow_command	src/onewire.c	/^void ow_command(uint8_t command, uint8_t *id) {$/;"	f	signature:(uint8_t command, uint8_t *id)
+ow_init	inc/onewire.h	/^void ow_init(void);$/;"	p	signature:(void)
+ow_init	src/onewire.c	/^void ow_init(void){$/;"	f	signature:(void)
+ow_input_pin_state	inc/onewire.h	/^uint8_t ow_input_pin_state(void);$/;"	p	signature:(void)
+ow_input_pin_state	src/onewire.c	/^uint8_t ow_input_pin_state() {$/;"	f
+ow_parasite_disable	inc/onewire.h	/^void ow_parasite_disable(void);$/;"	p	signature:(void)
+ow_parasite_disable	src/onewire.c	/^void ow_parasite_disable(void) {$/;"	f	signature:(void)
+ow_parasite_enable	inc/onewire.h	/^void ow_parasite_enable(void);$/;"	p	signature:(void)
+ow_parasite_enable	src/onewire.c	/^void ow_parasite_enable(void) {$/;"	f	signature:(void)
+ow_reset	inc/onewire.h	/^uint8_t ow_reset(void);$/;"	p	signature:(void)
+ow_reset	src/onewire.c	/^uint8_t ow_reset(void) {$/;"	f	signature:(void)
+ow_rom_search	inc/onewire.h	/^uint8_t ow_rom_search( uint8_t diff, uint8_t *id );$/;"	p	signature:( uint8_t diff, uint8_t *id )
+ow_rom_search	src/onewire.c	/^uint8_t ow_rom_search(uint8_t diff, uint8_t *id) {$/;"	f	signature:(uint8_t diff, uint8_t *id)
 p	src/radio.c	/^    u1_t p = readReg(LORARegFifoAddrPtr);$/;"	l
 p1	src/lmic.c	/^            u1_t p1     = opts[oidx+1];            \/\/ txpow + DR$/;"	l
 pad	src/printf-stdarg.c	/^	register int width, pad;$/;"	l
@@ -1127,8 +1289,8 @@ poff	src/lmic.c	/^    int  poff  = OFF_DAT_OPTS+olen;$/;"	l
 polynomial	src/lmic.c	/^    u2_t polynomial = 0x1021;$/;"	l
 port	src/lmic.c	/^    int port = -1;$/;"	l
 pow2dBm	inc/lorabase.h	/^s1_t pow2dBm (u1_t mcmd_ladr_p1);$/;"	p	signature:(u1_t mcmd_ladr_p1)
-pow2dBm	src/lmic.c	250;"	d	file:
-pow2dBm	src/lmic.c	276;"	d	file:
+pow2dBm	src/lmic.c	249;"	d	file:
+pow2dBm	src/lmic.c	275;"	d	file:
 print	src/printf-stdarg.c	/^static int print( char **out, const char *format, va_list args )$/;"	f	file:	signature:( char **out, const char *format, va_list args )
 print_buf	src/printf-stdarg.c	/^	char print_buf[PRINT_BUF_LEN];$/;"	l
 printchar	src/printf-stdarg.c	/^static void printchar(char **str, int c)$/;"	f	file:	signature:(char **str, int c)
@@ -1151,6 +1313,7 @@ ptr	src/printf-stdarg.c	/^	char *ptr = "Hello world!";$/;"	l
 putchar	src/printf-stdarg.c	29;"	d	file:
 pw	src/radio.c	/^    s1_t pw = (s1_t)LMIC.txpow;$/;"	l
 q	src/lmic.c	/^    u1_t q = sfx - (sf >= SF11 ? 8 : 0);$/;"	l
+quality	inc/gps.h	/^	uint8_t quality;$/;"	m	struct:__anon102	access:public
 r	src/lmic.c	/^    u2_t r = os_getRndU2();$/;"	l
 r	src/radio.c	/^    u1_t r = readReg(LORARegRssiValue);$/;"	l
 radio_init	inc/oslmic.h	/^void radio_init (void);$/;"	p	signature:(void)
@@ -1169,8 +1332,11 @@ rejoinCnt	inc/lmic.h	/^    u1_t        rejoinCnt;    \/\/ adjustment for rejoin 
 remainder	src/lmic.c	/^    u2_t remainder = 0;$/;"	l
 replayConf	src/lmic.c	/^    int replayConf = 0;$/;"	l
 reportEvent	src/lmic.c	/^static void reportEvent (ev_t ev) {$/;"	f	file:	signature:(ev_t ev)
+reportfunc	inc/main.h	/^static void reportfunc (osjob_t* j);$/;"	p	signature:(osjob_t* j)
 reportfunc	src/main.c	/^static void reportfunc (osjob_t* j) {$/;"	f	file:	signature:(osjob_t* j)
+reportfunc	src/main.c	/^static void reportfunc(osjob_t* j)$/;"	f	file:	signature:(osjob_t* j)
 reportjob	src/main.c	/^static osjob_t reportjob;$/;"	v	file:
+res	src/main.c	/^	uint32_t res;$/;"	l
 ret	src/hal.c	/^	u1_t ret;$/;"	l
 rndDelay	src/lmic.c	/^static ostime_t rndDelay (u1_t secSpan) {$/;"	f	file:	signature:(u1_t secSpan)
 rps	inc/lmic.h	/^    rps_t       rps;$/;"	m	struct:lmic_t	access:public
@@ -1209,14 +1375,19 @@ s	src/radio.c	/^    u1_t s = readReg(RegOpMode);$/;"	l
 s1_t	inc/oslmic.h	/^typedef int8_t             s1_t;$/;"	t
 s2_t	inc/oslmic.h	/^typedef int16_t            s2_t;$/;"	t
 s4_t	inc/oslmic.h	/^typedef int32_t            s4_t;$/;"	t
+s_pos	src/gps.c	/^	uint8_t s_pos = start_pos;$/;"	l
 sameSfBw	inc/lorabase.h	/^inline int sameSfBw(rps_t r1, rps_t r2) { return ((r1^r2)&0x1F) == 0; }$/;"	f	signature:(rps_t r1, rps_t r2)
 sameSfBw	src/lmic.c	/^extern inline int   sameSfBw (rps_t r1, rps_t r2);$/;"	p	file:	signature:(rps_t r1, rps_t r2)
+saveDataBuf	src/gps.c	/^static void saveDataBuf(osjob_t* j)$/;"	f	file:	signature:(osjob_t* j)
+savedata	src/gps.c	/^osjob_t savedata;$/;"	v
 schedRx2	src/lmic.c	/^static void schedRx2 (ostime_t delay, osjobcb_t func) {$/;"	f	file:	signature:(ostime_t delay, osjobcb_t func)
 scheduledjobs	src/oslmic.c	/^    osjob_t* scheduledjobs;$/;"	m	struct:__anon1	file:	access:public
 scr	src/printf-stdarg.c	/^	char scr[2];$/;"	l
+search_sep	src/gps.c	/^uint8_t search_sep(uint8_t sep, uint8_t* buf, uint8_t size_buf, uint8_t start_pos)$/;"	f	signature:(uint8_t sep, uint8_t* buf, uint8_t size_buf, uint8_t start_pos)
 sec2osticks	inc/oslmic.h	120;"	d
 sec2osticks	src/lmic.c	/^        schedRx2(sec2osticks(LMIC.rxDelay + (int)DELAY_EXTDNW2), FUNC_ADDR(setupRx2DnData));$/;"	p	file:	signature:(LMIC.rxDelay + (int)DELAY_EXTDNW2)
 sec2osticks	src/lmic.c	/^    txDone(sec2osticks(LMIC.rxDelay), FUNC_ADDR(setupRx1DnData));$/;"	p	file:	signature:(LMIC.rxDelay)
+sep	src/gps.c	/^	uint8_t sep = ',';$/;"	l
 seqno	src/lmic.c	/^    u4_t seqno = os_rlsbf2(&d[OFF_DAT_SEQNO]);$/;"	l
 seqnoDn	inc/lmic.h	/^    u4_t        seqnoDn;      \/\/ device level down stream seqno$/;"	m	struct:lmic_t	access:public
 seqnoUp	inc/lmic.h	/^    u4_t        seqnoUp;$/;"	m	struct:lmic_t	access:public
@@ -1231,8 +1402,8 @@ setIh	inc/lorabase.h	/^inline rps_t setIh   (rps_t params, int ih)    { return (
 setIh	src/lmic.c	/^extern inline rps_t setIh    (rps_t params, int ih);$/;"	p	file:	signature:(rps_t params, int ih)
 setNocrc	inc/lorabase.h	/^inline rps_t setNocrc(rps_t params, int nocrc) { return (rps_t)((params & ~0x80) | (nocrc<<7)); }$/;"	f	signature:(rps_t params, int nocrc)
 setNocrc	src/lmic.c	/^extern inline rps_t setNocrc (rps_t params, int nocrc);$/;"	p	file:	signature:(rps_t params, int nocrc)
-setRx1Params	src/lmic.c	694;"	d	file:
-setRx1Params	src/lmic.c	848;"	d	file:
+setRx1Params	src/lmic.c	693;"	d	file:
+setRx1Params	src/lmic.c	847;"	d	file:
 setSf	inc/lorabase.h	/^inline rps_t setSf   (rps_t params, sf_t sf)   { return (rps_t)((params & ~0x7) | sf); }$/;"	f	signature:(rps_t params, sf_t sf)
 setSf	src/lmic.c	/^extern inline rps_t setSf    (rps_t params, sf_t sf);$/;"	p	file:	signature:(rps_t params, sf_t sf)
 setupRx1	src/lmic.c	/^static void setupRx1 (osjobcb_t func) {$/;"	f	file:	signature:(osjobcb_t func)
@@ -1251,6 +1422,7 @@ snprintf	inc/printf-stdarg.h	/^int snprintf( char *buf, unsigned int count, cons
 snprintf	src/printf-stdarg.c	/^int snprintf( char *buf, unsigned int count, const char *format, ... )$/;"	f	signature:( char *buf, unsigned int count, const char *format, ... )
 snr	inc/lmic.h	/^    s1_t        snr;$/;"	m	struct:lmic_t	access:public
 snr	inc/lmic.h	/^    s1_t     snr;     \/\/!< Scaled SNR value of last received beacon$/;"	m	struct:bcninfo_t	access:public
+sp	src/ds18x20.c	/^	uint8_t sp[DS18X20_SP_SIZE];$/;"	l
 spi_init	inc/hal.h	/^void spi_init(void);$/;"	p	signature:(void)
 spi_init	src/hal.c	/^void spi_init(void)$/;"	f	signature:(void)
 sprintf	inc/printf-stdarg.h	/^int sprintf(char *out, const char *format, ...);$/;"	p	signature:(char *out, const char *format, ...)
@@ -1260,11 +1432,16 @@ startRxBcn	src/lmic.c	/^static void startRxBcn (xref2osjob_t osjob) {$/;"	f	file
 startRxPing	src/lmic.c	/^static void startRxPing (xref2osjob_t osjob) {$/;"	f	file:	signature:(xref2osjob_t osjob)
 startScan	src/lmic.c	/^static void startScan (void) {$/;"	f	file:	signature:(void)
 startScan	src/lmic.c	/^static void startScan (void);$/;"	p	file:	signature:(void)
+startmeasure	src/main.c	/^static void  startmeasure(osjob_t* j)$/;"	f	file:	signature:(osjob_t* j)
+startmeasurejob	src/main.c	/^static osjob_t startmeasurejob;$/;"	v	file:
 startrx	src/radio.c	/^static void startrx (u1_t rxmode) {$/;"	f	file:	signature:(u1_t rxmode)
 starttx	src/radio.c	/^static void starttx () {$/;"	f	file:
 stateJustJoined	src/lmic.c	/^static void stateJustJoined (void) {$/;"	f	file:	signature:(void)
 str_t	inc/oslmic.h	/^typedef const char*        str_t;$/;"	t
 su	src/lmic.c	/^    u1_t su = join ? 0 : NUM_DEFAULT_CHANNELS;$/;"	l
+subzero	src/ds18x20.c	/^	uint8_t subzero = res_meas[0];$/;"	l
+subzero	src/ds18x20.c	/^	uint8_t subzero, cel, cel_frac_bits;$/;"	l
+subzero	src/main.c	/^	u1_t subzero;$/;"	l
 swapmsbf	src/aes.c	198;"	d	file:
 t	src/hal.c	/^	u4_t t = hal_time;$/;"	l
 t	src/hal.c	/^    u4_t t = hal_ticks();$/;"	l
@@ -1282,6 +1459,7 @@ table_get_u2	inc/oslmic.h	/^    static inline u2_t table_get_u2(const u2_t *tabl
 table_get_u4	inc/oslmic.h	/^    static inline u4_t table_get_u4(const u4_t *table, size_t index) { return table[index]; }$/;"	f	signature:(const u4_t *table, size_t index)
 tikfunc	src/main.c	/^static void tikfunc(osjob_t* j)$/;"	f	file:	signature:(osjob_t* j)
 tikjob	src/main.c	/^osjob_t tikjob;$/;"	v
+time	inc/gps.h	/^	uint8_t time[TIME_BUF];$/;"	m	struct:__anon102	access:public
 time	inc/lmic.h	/^    u4_t     time;    \/\/!< GPS time in seconds of last beacon (received or surrogate)$/;"	m	struct:bcninfo_t	access:public
 time	src/lmic.c	/^    ostime_t time = os_getTime();$/;"	l
 tmp	src/lmic.c	/^    int tmp = 8*plen - sfx + 28 + (getNocrc(rps)?0:16) - (getIh(rps)?20:0);$/;"	l
@@ -1330,7 +1508,6 @@ usart_putstr	src/hal.c	/^void usart_putstr(char* str)$/;"	f	signature:(char* str
 usart_tx_buffer	src/hal.c	/^static uint8_t usart_tx_buffer[USART_RX_BUFFER_SIZE];$/;"	v	file:
 v	src/radio.c	/^    u1_t v = randbuf[i++];$/;"	l
 v	src/radio.c	/^    u1_t v = readReg(RegVersion);$/;"	l
-val	src/main.c	/^	    u2_t val = readsensor();$/;"	l
 val	src/radio.c	/^    u1_t val = hal_spi(0x00);$/;"	l
 validDR	inc/lorabase.h	/^inline bit_t validDR  (dr_t dr) { return _DR2RPS_CRC[dr+1]!=ILLEGAL_RPS; } \/\/ in range$/;"	f	signature:(dr_t dr)
 validDR	src/lmic.c	/^extern inline dr_t  validDR  (dr_t dr);$/;"	p	file:	signature:(dr_t dr)

@@ -33,7 +33,7 @@
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 /* #include <stdio.h> */
-#include "printf-stdarg.h"
+/* #include "printf-stdarg.h" */
 #include "lmic.h"
 
 #define LED_PORT				PORTC
@@ -42,7 +42,8 @@
 
 //Uart
 #define F_CPU					8000000UL
-#define USART_BAUDRATE			38400UL
+#define USART_BAUDRATE			9600UL
+/* #define USART_BAUDRATE			38400UL */
 #define BAUD_PRESCALLE			(((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
 #define USART_TX_BUFFER_SIZE	20
 #define USART_RX_BUFFER_SIZE	20

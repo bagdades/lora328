@@ -7,5 +7,4 @@ build/aes.o: src/aes.c inc/oslmic.h \
  /usr/lib/avr/include/avr/common.h /usr/lib/avr/include/avr/version.h \
  /usr/lib/avr/include/avr/fuse.h /usr/lib/avr/include/avr/lock.h \
  /usr/lib/avr/include/avr/interrupt.h /usr/lib/avr/include/avr/sleep.h \
- inc/printf-stdarg.h inc/lmic.h inc/lorabase.h \
- /usr/lib/avr/include/avr/pgmspace.h
+ inc/lmic.h inc/lorabase.h /usr/lib/avr/include/avr/pgmspace.h

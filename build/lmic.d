@@ -7,5 +7,4 @@ build/lmic.o: src/lmic.c inc/lmic.h inc/oslmic.h \
  /usr/lib/avr/include/avr/common.h /usr/lib/avr/include/avr/version.h \
  /usr/lib/avr/include/avr/fuse.h /usr/lib/avr/include/avr/lock.h \
  /usr/lib/avr/include/avr/interrupt.h /usr/lib/avr/include/avr/sleep.h \
- inc/printf-stdarg.h inc/lmic.h /usr/lib/avr/include/avr/pgmspace.h \
- inc/lorabase.h
+ inc/lmic.h /usr/lib/avr/include/avr/pgmspace.h inc/lorabase.h

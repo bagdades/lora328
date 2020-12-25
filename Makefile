@@ -14,6 +14,8 @@
 # target
 ######################################
 TARGET = lora328
+# OW_SENSORS = 1
+GPS_TRECKER = 1
 
 
 ######################################
@@ -41,13 +43,22 @@ BUILD_DIR = build
 # src/adc.c
 SRC_DIR = src/
 # C_SOURCES = $(wildcard $(SRC_DIR)*.c)
-C_SOURCES = src/main.c \
-src/printf-stdarg.c \
-src/oslmic.c \
-src/hal.c \
-src/radio.c \
-src/lmic.c \
-src/aes.c 
+C_SOURCES += src/main.c 
+C_SOURCES += src/oslmic.c 
+C_SOURCES += src/hal.c 
+C_SOURCES += src/radio.c 
+C_SOURCES += src/lmic.c 
+C_SOURCES += src/aes.c  
+ifdef OW_SENSORS
+C_SOURCES += src/crc8.c 
+C_SOURCES += src/onewire.c 
+C_SOURCES += src/ds18x20.c
+C_DEFS += OW_SENSORS
+endif
+ifdef GPS_TRECKER
+C_SOURCES += src/gps.c
+C_DEFS += GPS_TRECKER
+endif
 
 # ASM sources
 ASM_SOURCES =  \
@@ -82,6 +93,7 @@ AS_DEFS =
 C_DEFS += F_CPU=8000000UL
 C_DEFS += CFG_eu868
 C_DEFS += CFG_sx1276_radio
+# C_DEFS += DEBUG_LOG
 # C_DEFS += CFG_noassert
 C_DEFS += __AVR__
 C_DEFS += USE_ORIGINAL_AES

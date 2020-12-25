@@ -54,17 +54,68 @@ u2_t readsensor(){
 
 static osjob_t reportjob;
 
+#ifdef  OW_SENSORS
+static osjob_t startmeasurejob;
+
+static void  startmeasure(osjob_t* j)
+{
+	DS18X20_start_meas(DS18X20_POWER_EXTERN, 0);
+	os_setTimedCallback(&reportjob, os_getTime() + ms2osticks(750), reportfunc);
+}
+
 // report sensor value every minute
 static void reportfunc (osjob_t* j) {
-	  // read sensor
-	    u2_t val = readsensor();
-	    // prepare and schedule data for transmission
-	    LMIC.frame[0] = val << 8;
-	    LMIC.frame[1] = val;
-	    LMIC_setTxData2(1, LMIC.frame, 2, 0); // (port 1, 2 bytes, unconfirmed)
-		/* usart_putstr("Report.\r\n"); */
-	    os_setTimedCallback(j, os_getTime()+sec2osticks(5), reportfunc);
+	// read sensor
+	/* u2_t val = readsensor(); */
+	u1_t subzero;
+	u1_t cel;
+	u1_t cel_frac_bits;
+	DS18X20_read_meas_single(DS18B20_ID, &subzero, &cel, &cel_frac_bits);
+	// prepare and schedule data for transmission
+	/* LMIC.frame[0] = val << 8; */
+	/* LMIC.frame[1] = val; */
+	LMIC.frame[0] = subzero;
+	LMIC.frame[1] = cel;
+	LMIC.frame[2] = cel_frac_bits;
+	LMIC_setTxData2(1, LMIC.frame, 3, 0); // (port 1, 2 bytes, unconfirmed)
+	/* usart_putstr("Report.\r\n"); */
+	os_setTimedCallback(&startmeasurejob, os_getTime()+sec2osticks(5), startmeasure);
 }
+
+#endif     /* -----  not OW_SENSORS  ----- */
+
+
+#ifdef  GPS_TRECKER
+static void reportfunc(osjob_t* j)
+{
+	uint32_t res;
+	res = ((data_gps.latitude[0] * 10) + data_gps.latitude[1]) * (uint32_t)(10000)
+		+ ((data_gps.latitude[2] * 10) + data_gps.latitude[3]) * (uint32_t)(100)
+		+ (data_gps.latitude[4] * 10) + data_gps.latitude[5];
+	LMIC.frame[0] = (data_gps.time[0] << 4) | (data_gps.time[1] & 0x0F);
+	LMIC.frame[1] = (data_gps.time[2] << 4) | (data_gps.time[3] & 0x0F);
+	LMIC.frame[2] = (data_gps.time[4] << 4) | (data_gps.time[5] & 0x0F);
+	LMIC.frame[3] = res >> 16;
+	LMIC.frame[4] = res >> 8;
+	LMIC.frame[5] = res;
+	LMIC.frame[6] = (data_gps.dir_latit);
+	res = ((data_gps.longitude[1] * 10) + data_gps.longitude[2]) * (uint32_t)(10000)
+		+ ((data_gps.longitude[3] * 10) + data_gps.longitude[4]) * (uint32_t)(100)
+		+ (data_gps.longitude[5] * 10) + data_gps.longitude[6];
+	LMIC.frame[7] = res >> 16;
+	LMIC.frame[8] = res >> 8;
+	LMIC.frame[9] = res;
+	LMIC.frame[10] = (data_gps.dir_longit);
+	LMIC.frame[11] = (data_gps.quality);
+	LMIC.frame[12] = data_gps.num_satelites[0] * 10 + data_gps.num_satelites[1];
+	uint16_t hight = ((data_gps.height[0] * 10) + data_gps.height[1]) * 100 +
+		(data_gps.height[2] * 10) + data_gps.height[3];
+	LMIC.frame[13] = hight >> 8;
+	LMIC.frame[14] = hight;
+	LMIC_setTxData2(1, LMIC.frame, 15, 0);
+	os_setTimedCallback(j, os_getTime() + sec2osticks(10), reportfunc);
+}
+#endif     /* -----  not GPS_TRECKER  ----- */
 
 static void initfunc (osjob_t* j) {
 	LMIC_reset();
@@ -89,6 +140,16 @@ static void initfunc (osjob_t* j) {
 	LMIC_setupChannel(7, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
 	LMIC_setupChannel(8, 868800000, DR_RANGE_MAP(DR_FSK,  DR_FSK),  BAND_MILLI);      // g2-band
 
+	/* LMIC_setupChannel(0, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
+	/* LMIC_setupChannel(1, 868300000, DR_RANGE_MAP(DR_SF12, DR_SF7B), BAND_CENTI);      // g-band */
+	/* LMIC_setupChannel(2, 868500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
+	/* LMIC_setupChannel(3, 867100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
+	/* LMIC_setupChannel(4, 867300000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
+	/* LMIC_setupChannel(5, 867500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
+	/* LMIC_setupChannel(6, 867700000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
+	/* LMIC_setupChannel(7, 867900000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
+	/* LMIC_setupChannel(8, 868800000, DR_RANGE_MAP(DR_FSK,  DR_FSK),  BAND_MILLI);      // g2-band */
+
 	// Disable link check validation
 	LMIC_setLinkCheckMode(0);
 	// TTN uses SF9 for its RX2 window.
@@ -96,7 +157,10 @@ static void initfunc (osjob_t* j) {
 	// Set data rate and transmit power for uplink (note: txpow seems to be ignored by the library)
 	LMIC_setDrTxpow(DR_SF7,14);
 
+#ifdef  GPS_TRECKER
 	os_setTimedCallback(j, os_getTime(), reportfunc);
+#endif     /* -----  not GPS_TRECKER  ----- */
+	/* os_setTimedCallback(j, os_getTime(), reportfunc); */
 }
 
 osjob_t tikjob;
@@ -114,6 +178,8 @@ static void tikfunc(osjob_t* j)
 	os_setTimedCallback(&tikjob, os_getTime() + sec2osticks(1), tikfunc);
 }
 
+
+#ifdef  DEBUG_LOG
 void debug_event (int ev) {
     static char* evnames[] = {
         [EV_SCAN_TIMEOUT]   = "SCAN_TIMEOUT",
@@ -138,10 +204,15 @@ void debug_event (int ev) {
     usart_putchar('\r');
     usart_putchar('\n');
 }
+#endif     /* -----  not DEBUG_LOG  ----- */
 
 void onEvent(ev_t ev)
 {
+
+#ifdef  DEBUG_LOG
 	debug_event(ev);
+#endif     /* -----  DEBUG_LOG  ----- */
+
 	switch(ev) {
 
 		// network joined, session established
@@ -212,6 +283,11 @@ int main(void)
 {
 	osjob_t initjob;
 	os_init();
+
+#ifdef  OW_SENSORS
+	ow_init();
+	startmeasure(&reportjob);
+#endif     /* -----  not OW_SENSORS  ----- */
 	usart_putstr("Hello from node.\r\n");
 	os_setCallback(&tikjob, tikfunc);
 	os_setCallback(&initjob, initfunc);

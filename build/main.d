@@ -9,4 +9,5 @@ build/main.o: src/main.c inc/main.h /usr/lib/avr/include/avr/io.h \
  /usr/lib/avr/include/avr/eeprom.h /usr/lib/avr/include/util/delay.h \
  /usr/lib/avr/include/util/delay_basic.h /usr/lib/avr/include/math.h \
  inc/lmic.h inc/oslmic.h /usr/lib/avr/include/string.h inc/hal.h \
- /usr/lib/avr/include/avr/sleep.h inc/printf-stdarg.h inc/lorabase.h
+ /usr/lib/avr/include/avr/sleep.h inc/lorabase.h inc/gps.h \
+ /usr/lib/avr/include/stdio.h /usr/lib/gcc/avr/5.4.0/include/stdarg.h

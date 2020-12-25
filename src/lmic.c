@@ -61,7 +61,6 @@
 DEFINE_LMIC;
 DECL_ON_LMIC_EVENT;
 
-
 // Fwd decls.
 static void engineUpdate(void);
 static void startScan (void);
