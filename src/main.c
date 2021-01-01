@@ -18,19 +18,59 @@
 
 #include "main.h"
 
+uint8_t EEMEM eep_mode_work = DS18B20_MODE;;
+uint8_t EEMEM eep_act_method;
+// ABP
+u1_t EEMEM eep_appeui[8];
+u1_t EEMEM eep_deveui[8];
+u1_t EEMEM eep_nwkskey[16];
+u1_t EEMEM eep_appskey[16];
+u4_t EEMEM eep_devaddr;
+
+uint8_t mode_work; /* 0 - ds18b20, 1 - gpstracker */
+uint8_t activat_method = ABP_METHOD; /* 0 - ABP, 1 - OTTA */
+
 
 // application router ID (LSBF)  < ------- IMPORTANT
+#define ABP
 static  u1_t APPEUI[8]  = { 0xD5, 0x73, 0x03, 0xD0, 0x7E, 0xD5, 0xB3, 0x70 };
-// unique device ID (LSBF)       < ------- IMPORTANT
-static  u1_t DEVEUI[8]  = { 0x24, 0x2C, 0x70, 0x25, 0xD7, 0x11, 0x09, 0x00 };
 
+
+// unique device ID (LSBF)       < ------- IMPORTANT
+
+#ifdef  ABP
+static  u1_t DEVEUI[8]  = { 0x24, 0x2C, 0x70, 0x25, 0xD7, 0x11, 0x09, 0x00 };//ABP
 // device-specific AES key (derived from device EUI)
 static  u1_t DEVKEY[16] = { 0x17, 0xD1, 0x31, 0x96, 0xDF, 0x02, 0x9C, 0x15, 0x45, 0x0B, 0x5C, 0x50, 0xA0, 0xDD, 0xD9, 0x55 };
+#else      /* -----  not ABP  ----- */
+static  u1_t DEVEUI[8]  = { 0x77, 0xEC, 0xAC, 0xD3, 0x00, 0xB5, 0xC5, 0x00};//OTTA
+#endif     /* -----  not ABP  ----- */
 
+
+
+#ifdef  ABP
 //   ABP
 static  u1_t NWKSKEY[16] = { 0x70, 0x9A, 0x66, 0x6B, 0x26, 0x11, 0x1E, 0x90, 0xDD, 0xD3, 0x7F, 0x4E, 0x59, 0x69, 0x73, 0xB2 };
-static  u1_t APPSKEY[16] = { 0x9E, 0x3B, 0x6E, 0x84, 0x0D, 0xCE, 0xCA, 0x5E, 0x68, 0x85, 0x9B, 0xB9, 0xD0, 0x00, 0x10, 0xEB };
+#endif     /* -----  ABP  ----- */
+
+#ifdef  ABP
+static  u1_t APPSKEY[16] = { 0x9E, 0x3B, 0x6E, 0x84, 0x0D, 0xCE, 0xCA, 0x5E, 0x68, 0x85, 0x9B, 0xB9, 0xD0, 0x00, 0x10, 0xEB }; /* ABP */
 static  u4_t DEVADDR = 0x260111DF;
+#else      /* -----  not ABP  ----- */
+static  u1_t DEVKEY[16] = { 0x46, 0xDC, 0x9E, 0x10, 0x3C, 0x79, 0xA3, 0xB1, 0xC6, 0x92, 0x58, 0xD3, 0xCC, 0xE1, 0x3C, 0x98}; /* OTTA */
+#endif     /* -----  not ABP  ----- */
+
+static void reporttemp (osjob_t* j);
+
+void os_getNwksKey(u1_t* buf)
+{
+	memcpy(buf, NWKSKEY, 16);
+}
+
+void os_getAppsKey(u1_t* buf)
+{
+	memcpy(buf, APPSKEY, 16);
+}
 
 // provide application router ID (8 bytes, LSBF)
 void os_getArtEui (u1_t* buf) {
@@ -47,26 +87,23 @@ void os_getDevKey (u1_t* buf) {
     memcpy(buf, DEVKEY, 16);
 }
 
-u2_t readsensor(){
-	u2_t value = 0xAA;    /// read from evrything ...make your own sensor
-	return value;
+void os_getDevAddr(u4_t* buf) {
+	*buf = DEVADDR;
 }
 
 static osjob_t reportjob;
 
-#ifdef  OW_SENSORS
+/* #ifdef  OW_SENSORS */
 static osjob_t startmeasurejob;
 
 static void  startmeasure(osjob_t* j)
 {
 	DS18X20_start_meas(DS18X20_POWER_EXTERN, 0);
-	os_setTimedCallback(&reportjob, os_getTime() + ms2osticks(750), reportfunc);
+	os_setTimedCallback(&reportjob, os_getTime() + ms2osticks(750), reporttemp);
 }
 
 // report sensor value every minute
-static void reportfunc (osjob_t* j) {
-	// read sensor
-	/* u2_t val = readsensor(); */
+static void reporttemp (osjob_t* j) {
 	u1_t subzero;
 	u1_t cel;
 	u1_t cel_frac_bits;
@@ -82,10 +119,10 @@ static void reportfunc (osjob_t* j) {
 	os_setTimedCallback(&startmeasurejob, os_getTime()+sec2osticks(5), startmeasure);
 }
 
-#endif     /* -----  not OW_SENSORS  ----- */
+/* #endif     #<{(| -----  not OW_SENSORS  ----- |)}># */
 
 
-#ifdef  GPS_TRECKER
+/* #ifdef  GPS_TRECKER */
 static void reportfunc(osjob_t* j)
 {
 	uint32_t res;
@@ -115,7 +152,7 @@ static void reportfunc(osjob_t* j)
 	LMIC_setTxData2(1, LMIC.frame, 15, 0);
 	os_setTimedCallback(j, os_getTime() + sec2osticks(10), reportfunc);
 }
-#endif     /* -----  not GPS_TRECKER  ----- */
+/* #endif     #<{(| -----  not GPS_TRECKER  ----- |)}># */
 
 static void initfunc (osjob_t* j) {
 	LMIC_reset();
@@ -124,12 +161,17 @@ static void initfunc (osjob_t* j) {
 	// init done - onEvent() callback will be invoked...
 
 	//   ABP
+#ifdef  ABP
 	uint8_t appskey[sizeof(APPSKEY)];
-	uint8_t nwkskey[sizeof(NWKSKEY)];
 	memcpy(appskey, APPSKEY, sizeof(APPSKEY));
+	uint8_t nwkskey[sizeof(NWKSKEY)];
 	memcpy(nwkskey, NWKSKEY, sizeof(NWKSKEY));
 	LMIC_setSession (0x1, DEVADDR, nwkskey, appskey);
+#endif     /* -----   ABP  ----- */
 
+
+
+#ifdef  ONE_CHANEL
 	LMIC_setupChannel(0, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
 	LMIC_setupChannel(1, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7B), BAND_CENTI);      // g-band
 	LMIC_setupChannel(2, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
@@ -139,16 +181,17 @@ static void initfunc (osjob_t* j) {
 	LMIC_setupChannel(6, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
 	LMIC_setupChannel(7, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
 	LMIC_setupChannel(8, 868800000, DR_RANGE_MAP(DR_FSK,  DR_FSK),  BAND_MILLI);      // g2-band
-
-	/* LMIC_setupChannel(0, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
-	/* LMIC_setupChannel(1, 868300000, DR_RANGE_MAP(DR_SF12, DR_SF7B), BAND_CENTI);      // g-band */
-	/* LMIC_setupChannel(2, 868500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
-	/* LMIC_setupChannel(3, 867100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
-	/* LMIC_setupChannel(4, 867300000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
-	/* LMIC_setupChannel(5, 867500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
-	/* LMIC_setupChannel(6, 867700000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
-	/* LMIC_setupChannel(7, 867900000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band */
-	/* LMIC_setupChannel(8, 868800000, DR_RANGE_MAP(DR_FSK,  DR_FSK),  BAND_MILLI);      // g2-band */
+#else      /* -----  not ONE_CHANEL  ----- */
+	LMIC_setupChannel(0, 868100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(1, 868300000, DR_RANGE_MAP(DR_SF12, DR_SF7B), BAND_CENTI);      // g-band
+	LMIC_setupChannel(2, 868500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(3, 867100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(4, 867300000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(5, 867500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(6, 867700000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(7, 867900000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
+	LMIC_setupChannel(8, 868800000, DR_RANGE_MAP(DR_FSK,  DR_FSK),  BAND_MILLI);      // g2-band
+#endif     /* -----  not ONE_CHANEL  ----- */
 
 	// Disable link check validation
 	LMIC_setLinkCheckMode(0);
@@ -157,13 +200,16 @@ static void initfunc (osjob_t* j) {
 	// Set data rate and transmit power for uplink (note: txpow seems to be ignored by the library)
 	LMIC_setDrTxpow(DR_SF7,14);
 
-#ifdef  GPS_TRECKER
-	os_setTimedCallback(j, os_getTime(), reportfunc);
-#endif     /* -----  not GPS_TRECKER  ----- */
+/* #ifdef  GPS_TRECKER */
+	if (mode_work == GPS_TRECKER_MODE) 
+	{
+		os_setTimedCallback(j, os_getTime(), reportfunc);
+	}
+/* #endif     #<{(| -----  not GPS_TRECKER  ----- |)}># */
 	/* os_setTimedCallback(j, os_getTime(), reportfunc); */
 }
 
-osjob_t tikjob;
+static osjob_t tikjob;
 
 static void tikfunc(osjob_t* j)
 {
@@ -222,7 +268,13 @@ void onEvent(ev_t ev)
 		case EV_JOINED:
 			/* debug_led(1); */
 			// kick-off periodic sensor job
-			reportfunc(&reportjob);
+			if (mode_work == GPS_TRECKER_MODE) 
+			{
+				reportfunc(&reportjob);
+			} else if (mode_work == DS18B20_MODE) 
+			{
+				reporttemp(&reportjob);
+			}
 			break;
 		case EV_JOIN_FAILED:
 			/* usart_putstr("join failed\r\n"); */
@@ -282,12 +334,16 @@ void onEvent(ev_t ev)
 int main(void)
 {
 	osjob_t initjob;
+	mode_work = eeprom_read_byte(&eep_mode_work);
 	os_init();
 
-#ifdef  OW_SENSORS
-	ow_init();
-	startmeasure(&reportjob);
-#endif     /* -----  not OW_SENSORS  ----- */
+/* #ifdef  OW_SENSORS */
+	if (mode_work == DS18B20_MODE) 
+	{
+		ow_init();
+		startmeasure(&reportjob);
+	}
+/* #endif     #<{(| -----  not OW_SENSORS  ----- |)}># */
 	usart_putstr("Hello from node.\r\n");
 	os_setCallback(&tikjob, tikfunc);
 	os_setCallback(&initjob, initfunc);

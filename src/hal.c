@@ -46,10 +46,10 @@ void usart_init(void)
 	//Enable TX interrupt
 	UCSR0B |= (1 << TXCIE0);
 
-#ifdef  GPS_TRECKER
+/* #ifdef  GPS_TRECKER */
 	//Enable RX complete interrupt
 	UCSR0B |= (1 << RXCIE0);
-#endif     /* -----  not GPS_TRECKER  ----- */
+/* #endif     #<{(| -----  not GPS_TRECKER  ----- |)}># */
 	//Set frame format to 8 data bits, no parity, 1 stop bit
 	UCSR0C |= (1 << UCSZ01) | (1 << UCSZ00);
 	/* stdout = &mystdout; */
@@ -60,8 +60,9 @@ void usart_putchar(uint8_t ch)
 {
 	if (bit_is_set(UCSR0A, UDRE0) && tx_countbuffer == 0) 
 		UDR0 = ch;
-	else if (tx_countbuffer < USART_RX_BUFFER_SIZE) 
-	{
+	else 	
+	{ 
+		while (tx_countbuffer == USART_RX_BUFFER_SIZE - 1);
 		tx_countbuffer++;
 		usart_tx_buffer[tx_headbuffer] = ch;
 		tx_headbuffer++;
@@ -76,6 +77,13 @@ void usart_putstr(char* str)
 	{
 		usart_putchar(*str);
 		str++;
+	}
+}
+
+void usart_putstrP(const char* str)
+{
+	while(pgm_read_byte(str) != '\0') {
+		usart_putchar(pgm_read_byte(str++));
 	}
 }
 

@@ -10,16 +10,18 @@
 #include <util/delay.h>
 #include "lmic.h"
 #include "hal.h"
+#include "config.h"
 
-#ifdef  OW_SENSORS
+/* #ifdef  OW_SENSORS */
 #include "ds18x20.h"
 #include "onewire.h"
-#endif     /* -----  not OW_SENSORS  ----- */
+/* #endif     #<{(| -----  not OW_SENSORS  ----- |)}># */
 
 
-#ifdef  GPS_TRECKER
+/* #ifdef  GPS_TRECKER */
 #include "gps.h"
-#endif     /* -----  not GPS_TRECKER  ----- */
+/* #endif     #<{(| -----  not GPS_TRECKER  ----- |)}># */
+
 
 //Protorypes
 static void reportfunc (osjob_t* j);

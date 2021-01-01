@@ -1,19 +1,27 @@
-#ifndef  GPS_INC
-#define  GPS_INC
+#ifndef  PARSER_INC
+#define  PARSER_INC
 
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <stdio.h>
 #include "hal.h"
-#include "oslmic.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <avr/pgmspace.h>
+#include <avr/eeprom.h>
+#include <util/delay.h>
+#include "config.h"
 
-#define 	RX_BUF			100
 
-#define 	TIME_BUF		6
-#define 	LATITUDE_BUF	6
-#define 	LONGITUDE_BUF	7
-#define 	SATELITE_BUF	2
-#define 	HEIGHT_BUF		4
+#define 	TIME_BUF		10
+#define 	LATITUDE_BUF	15
+#define 	LONGITUDE_BUF	15
+#define 	SATELITE_BUF	3
+#define 	HEIGHT_BUF		5
+
+#define 	TRUE					1
+#define 	FALSE					0
+#define 	CHAR_NEWLINE			'\n'
+#define 	CHAR_RETURN				'\r'
+#define 	RETURN_NEWLINE			"\r\n"
 
 typedef struct 
 {
@@ -30,5 +38,7 @@ typedef struct
 GPS_t data_gps;
 
 //Prototypes
+void process_uart(osjob_t* j);
+uint16_t usart_getchar(void);
 
-#endif   /* ----- #ifndef GPS_INC  ----- */
+#endif   /* ----- #ifndef PARSER_INC  ----- */

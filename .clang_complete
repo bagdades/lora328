@@ -8,3 +8,4 @@
 -DCFG_sx1276_radio
 -D__AVR__
 -DGPS_TRECKER
+*-DDEBUG_LOG

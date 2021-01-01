@@ -32,6 +32,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
+#include <avr/pgmspace.h>
 /* #include <stdio.h> */
 /* #include "printf-stdarg.h" */
 #include "lmic.h"
@@ -45,8 +46,8 @@
 #define USART_BAUDRATE			9600UL
 /* #define USART_BAUDRATE			38400UL */
 #define BAUD_PRESCALLE			(((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
-#define USART_TX_BUFFER_SIZE	20
-#define USART_RX_BUFFER_SIZE	20
+#define USART_TX_BUFFER_SIZE	100
+#define USART_RX_BUFFER_SIZE	100
 
 //Spi
 #define NSS_PORT	PORTB
@@ -88,6 +89,11 @@ void usart_putchar(uint8_t ch);
  *uart put string
  */
 void usart_putstr(char* str);
+
+/* 
+ * uart put string from flash memory
+ */
+void usart_putstrP(const char* str);
 
 /*
  * initialize hardware (IO, SPI, TIMER, IRQ).

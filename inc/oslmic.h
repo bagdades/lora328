@@ -140,6 +140,17 @@ TYPEDEF_xref2osjob_t;
 
 #ifndef HAS_os_calls
 
+#ifndef  os_getNwksKey
+void os_getNwksKey(u1_t* buf);
+#endif     
+
+#ifndef  os_getAppsKey
+void os_getAppsKey(u1_t* buf);
+#endif     
+
+#ifndef  os_getDevAddr
+void os_getDevAddr(u4_t* buf);
+#endif     
 #ifndef os_getDevKey
 void os_getDevKey (xref2u1_t buf);
 #endif
